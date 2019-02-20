@@ -82,9 +82,19 @@ class AsuntoController extends Controller
 
         $subs = subcription::where(['user_id'=>Auth::user()->id,'estado'=>true])->get();
 
+        $clave = rand(1000,9999);
+
+           $u = User::find(Auth::user()->id);
+
+        if(!$u->clave)
+            {
+                $u->clave = $clave;
+                $u->save();
+            }
+            $u->save();
 
         // print_r($asuntos);
-        return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs);
+        return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs)->with('clave',$u->clave);
 
 
     }
