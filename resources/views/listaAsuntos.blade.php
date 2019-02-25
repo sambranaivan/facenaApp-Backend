@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
+<style>
+    #buscar{
+         background-image: url('/css/searchicon.png'); Add a search icon to input
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+    }
+    </style>
 @section('content')
-
 <script>
     $(document).ready(function(){
 
@@ -37,6 +48,32 @@
 
         })
 
+        $("#buscar").keyup(function ()
+        {
+            filtrar();
+        })
+    // /
+    function filtrar() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("buscar");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tabla-asuntos");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+                }
+            }
+            }
 
 
     })
@@ -82,8 +119,8 @@
 
         </div>
             <div class="card-body">
-
-            <table class="table table-sm">
+<input type="text" id="buscar" placeholder="Buscar.." >
+            <table class="table table-sm" id="tabla-asuntos">
                 <tr>
                     <th>Codigo</th>
                     <th>Descripcion</th>
