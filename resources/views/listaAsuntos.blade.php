@@ -18,7 +18,7 @@
                 $.get('subscribe',{asunto:asunto},function(data){
                 console.log(data);
                 if(data == 'registrado'){
-                    boton.html("Desactivar").removeClass('btn-success').addClass('btn-danger');
+                    boton.html("desactivar").removeClass('btn-success').addClass('btn-danger');
                     boton.data('status','desactivar');
 
                 }
@@ -42,11 +42,11 @@
     })
 </script>
 <div class="container">
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-4 offset-md-8 text-right">
         <button type="button" name="" id="" class="btn btn-primary" data-toggle="modal" data-target="#claveModal">Vincular con Aplicación Movil</button>
     </div>
-</div>
+</div> --}}
 <!-- Modal -->
 <div class="modal fade" id="claveModal" tabindex="-1" role="dialog" aria-labelledby="claveModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -64,38 +64,60 @@
     </div>
   </div>
 </div>
-    <table class="table table-sm">
-    	<tr>
-    		<th>Codigo</th>
-    		<th>Descripcion</th>
-    		<th>Noticaciones</th>
-    	</tr>
-@foreach ($asuntos as $item)
-	<tr>
-		<td>{{ $item->codigo }}</td>
-		<td>{{ $item->descripcion}}</td>
-		<td>
-            @php
-                $aux = false;
-            @endphp
-            @foreach ($subs as $sub)
-                {{-- {{$sub->id}} --}}
-                @if ($sub->asunto_id == $item->codigo)
-                    @php
-                        $aux = true;
-                    @endphp
-                @endif
-            @endforeach
-            @if ($aux)
-                <button class="btn btn-sm btn-danger subscribe" data-status="desactivar" data-ref="{{ $item->codigo }}">Descativar</button>
-            @else
-                 <button class="btn btn-sm btn-success subscribe" data-status="activar" data-ref="{{ $item->codigo }}">Activar</button>
-            @endif
-        </td>
+    <div class="card text-left">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>Activar y Desactivar Alertas
+                    @if($filtro)
+                        <a class="btn btn-success" href="asuntos">Ver todos</a>
+                    @else
+                        <a class="btn btn-success" href="./">Ver más usados</a>
+                    @endif</h4>
+                </div>
+                <div class="col-md-4  text-right">
+                    <button type="button" name="" id="" class="btn btn-primary" data-toggle="modal" data-target="#claveModal">Vincular con Aplicación Movil</button>
+                </div>
+            </div>
 
-	</tr>
-@endforeach
-    </table>
+        </div>
+            <div class="card-body">
+
+            <table class="table table-sm">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Descripcion</th>
+                    <th>Noticaciones</th>
+                </tr>
+                    @foreach ($asuntos as $item)
+                        <tr>
+                            <td>{{ $item->codigo }}</td>
+                            <td>{{ $item->descripcion}}</td>
+                            <td>
+                                @php
+                                    $aux = false;
+                                @endphp
+                                @foreach ($subs as $sub)
+                                    {{-- {{$sub->id}} --}}
+                                    @if ($sub->asunto_id == $item->codigo)
+                                        @php
+                                            $aux = true;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                @if ($aux)
+                                    <button class="btn btn-sm btn-danger subscribe" data-status="desactivar" data-ref="{{ $item->codigo }}">desactivar</button>
+                                @else
+                                    <button class="btn btn-sm btn-success subscribe" data-status="activar" data-ref="{{ $item->codigo }}">Activar</button>
+                                @endif
+                            </td>
+
+                        </tr>
+                    @endforeach
+            </table>
+            </div>
+
+    </div>
 
 
 </div>

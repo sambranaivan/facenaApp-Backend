@@ -22,10 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
     //
-    Route::get('/asuntos','AsuntoController@viewAsuntos');
+    Route::get('/asuntos','AsuntoController@verTodos');
     Route::get('/subscribe','AsuntoController@subscribe');
     Route::get('/unsubscribe','AsuntoController@unsubscribe');
     Route::get('/', 'AsuntoController@verAsuntos');
+
+    Route::get('/superadmin','UserController@superAdmin');
+    Route::post('/updatefilters','UserController@updateFilters');
 
 });
 
@@ -34,5 +37,5 @@ Route::get('/checkupdate','AlertaController@checkUpdate');
 
 ///probar notificacion
 Route::get('/test','AsuntoController@sendNotificacion');
+//  TODO route de superadmin
 
-// semi api

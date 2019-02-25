@@ -17,6 +17,7 @@ class CreateConfiguracionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('last_id')->nulled();
+            $table->string('filter')->nulled();
         });
     }
 

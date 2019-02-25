@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\configuracion;
 class UserController extends Controller
 {
     //
@@ -18,6 +19,19 @@ class UserController extends Controller
     	return "ok";
     	// print_r($data);
     	// print_r($request->getContent());
+    }
+
+    public function superadmin(){
+        $config = configuracion::first();
+        return view('superadmin')->with(['config'=>$config]);
+    }
+
+    public function updateFilters(Request $request){
+        $config = configuracion::first();
+
+        $config->filter = $request->asuntos;
+        $config->save();
+        return redirect('superadmin');
     }
 
 

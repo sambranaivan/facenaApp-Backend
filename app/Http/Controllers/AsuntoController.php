@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\configuracion;
 use App\subcription;
 use App\Asunto;
 use GuzzleHttp\Client;
@@ -44,12 +45,29 @@ class AsuntoController extends Controller
         return "unsubscribe ok";
     }
 
-    public function viewAsuntos(){///view all
-    	$asuntos = Asunto::orderBy('descripcion')->get();
+     public function verTodos(){
 
-        // $db = DB::pg_select(connection, table_name, assoc_array)
+        $asuntos = Asunto::all();
 
-    	return view('listaAsuntos')->with('asuntos',$asuntos);
+
+
+        $subs = subcription::where(['user_id'=>Auth::user()->id,'estado'=>true])->get();
+
+        $clave = rand(1000,9999);
+
+           $u = User::find(Auth::user()->id);
+
+        if(!$u->clave)
+            {
+                $u->clave = $clave;
+                $u->save();
+            }
+            $u->save();
+
+        // print_r($asuntos);
+        return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs)->with('clave',$u->clave)->with('filtro',false);;
+
+
     }
 
 
@@ -71,12 +89,10 @@ class AsuntoController extends Controller
 
     public function verAsuntos(){
 
+        $config = configuracion::first();
         $asuntos = DB::select('SELECT * from mesa_exactas.tablas
-        where codigo in
-            (SELECT asunto from (select asunto, COUNT(*) as cantidad from mesa_exactas.expedien e left join mesa_exactas.tablas a on e.asunto = a.codigo
-                where fecha like "2019%"
-                GROUP by asunto
-                ) as sub where cantidad > 3) ORDER by descripcion desc');
+        where codigo in ('.$config->filter.')'
+            );
 
         $asuntos = Asunto::hydrate($asuntos);
 
@@ -94,7 +110,7 @@ class AsuntoController extends Controller
             $u->save();
 
         // print_r($asuntos);
-        return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs)->with('clave',$u->clave);
+        return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs)->with('clave',$u->clave)->with('filtro',true);
 
 
     }

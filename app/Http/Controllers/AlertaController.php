@@ -55,14 +55,14 @@ class AlertaController extends Controller
                         echo 'Token OK....enviando notificacion</br>';
                         echo $exp->detalle_asunto.'</br>';
                         echo $exp->getAsunto->descripcion;
-                        $this->sendNotificacion($u->token,'Nuevo Expediente '.$exp->numero,$exp->getAsunto->descripcion."-".$exp->detalle_asunto,$exp->getAsunto->descipcion);
+                        $this->sendNotificacion($u->token,'Nuevo Expediente '.$exp->numero,$exp->getAsunto->descripcion."-".$exp->detalle_asunto,$exp);
                     }
 
                 }
 
         $config->last_id = $exp->registro;
         }
-        // $config->save();
+        $config->save();
 
      }
 
@@ -75,11 +75,22 @@ class AlertaController extends Controller
                 [
                     'to'=> $token, //User->getToken();
                     "title"=>$titulo,
+                    "channelId"=> 'notif',
                     "body"=>$mensaje,
-                    "sound"=>'default',
-                    "data"=>['message'=>$data]]
-                ]);
-                    echo 'notificacion enviada';
+                    "data"=>[
+                        'asunto'=>$data->getAsunto->descripcion,
+                        'expediente'=>[ 'iniciador' => $data->detalle_iniciador,
+                                        'numero' => $data->numero,
+                                        'fecha' => $data->fecha,
+                                        // 'operador'=> $data->operador,
+                                        'detalle_asunto'=>$data->detalle_asunto,
+                                        'codigo_asunto'=>$data->asunto
+                                        ]
+                            ],
+
+
+                ]]);
+                    echo 'notificacion enviada</br>';
         }
 
 
