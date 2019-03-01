@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/superadmin','UserController@superAdmin');
     Route::post('/updatefilters','UserController@updateFilters');
 
+    // rutas de configuracion
+    Route::get('/config/lastid/{lastid}', 'ConfiguracionController@set');
+    Route::get('/config/lastid/', 'ConfiguracionController@get');
+
 });
 
 Route::get('/checkupdate','AlertaController@checkUpdate');
