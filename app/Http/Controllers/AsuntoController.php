@@ -90,7 +90,7 @@ class AsuntoController extends Controller
     public function verAsuntos(){
 
         $config = configuracion::first();
-        $asuntos = DB::select('SELECT * from mesa_exactas.tablas
+        $asuntos = DB::connection('mysql2')->select('SELECT * from mesa_exactas.TABLAS
         where codigo in ('.$config->filter.')'
             );
 

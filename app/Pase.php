@@ -8,7 +8,7 @@ use App\Iniciador;
 class Pase extends Model
 {
     protected $connection = 'mysql2';
-    protected $table = 'exp_pase';
+    protected $table = 'EXP_PASE';
     protected $primaryKey  = 'registro';
 
     //

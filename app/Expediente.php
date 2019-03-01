@@ -8,7 +8,7 @@ class Expediente extends Model
 {
     //
     protected $connection = 'mysql2';
-    protected $table = 'expedien';
+    protected $table = 'EXPEDIEN';
     protected $primaryKey  = 'registro';
 
     public function getAsunto(){

@@ -61,7 +61,7 @@
                                                      document.getElementById('logout-form').submit();">
                                        Salir
                                     </a>
-                                    @if(Auth::user()->id == 3)
+                                    @if(Auth::user()->superadmin)
                                             <a class="dropdown-item" href="superadmin">
                                             SuperAdmin
                                             </a>

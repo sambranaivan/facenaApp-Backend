@@ -8,7 +8,7 @@
                 <div class="card-header">SuperAdmin</div>
 
                 <div class="card-body">
-                    @if(Auth::user()->id == 3)
+                    @if(Auth::user()->superadmin)
                     <form class="form" method="POST" action="updatefilters">
                         @csrf
                         <div class="form-group">

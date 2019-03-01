@@ -8,6 +8,6 @@ class Asunto extends Model
 {
     //
     protected $connection = 'mysql2';
-    protected $table = 'tablas';
+    protected $table = 'TABLAS';
     protected $primaryKey  = 'codigo';
 }
