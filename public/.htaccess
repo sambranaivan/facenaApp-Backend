@@ -1,9 +1,13 @@
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
+# php -- BEGIN cPanel-generated handler, do not edit
+<IfModule mime_module>
 
-    RewriteEngine On
+#PHP version
+
+  AddType application/x-httpd-ea-php71 .php .php7 .phtml
+
+# php -- END cPanel-generated handler, do not edit
+
+RewriteEngine On
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -18,4 +22,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
 </IfModule>
