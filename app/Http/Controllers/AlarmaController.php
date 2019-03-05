@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Departamento;
 use App\Alarma;
+use App\Pase;
+use App\Configuracion;
+use App\Mail\DemoEmail;
+use Illuminate\Support\Facades\Mail;
 use DB;
 class AlarmaController extends Controller
 {
@@ -95,7 +99,8 @@ class AlarmaController extends Controller
         //     ->with('alarma_2',$a_2)
         //     ->with('selected',$dpto)
         //     ->with('updated',true);
-        return redirect('/superadmin/listaAlertas');
+        // return redirect('/superadmin/listaAlertas');
+        return redirect()->route('alertas');
 
     }
 
@@ -110,5 +115,104 @@ class AlarmaController extends Controller
 
 
         return view('listadoAlertas')->with('departamentos',$d);
+    }
+
+public function send()
+        {
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Demo One Value';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender = 'SenderUserName';
+        $objDemo->receiver = 'ReceiverUserName';
+
+        Mail::to("sambranaivan@gmail.com")->send(new DemoEmail($objDemo));
+        }
+
+public function borrarAlerta($departamento_id){
+
+            $a = Alarma::where('departamento',$departamento_id)->get();
+
+            foreach ($a as $alarma)
+            {
+                $alarma->delete();
+            }
+          return redirect()->route('alertas');
+    }
+
+
+    public function runAlarma(){
+        $c = Configuracion::first();
+        ////obtengo todas las alarmas
+        $alarmas = Alarma::where('tipo',1)->get();///alerta por pase en espera
+
+        foreach ($alarmas as $alarma)
+        {///por cada alarma osea aca tengo un deparamento nomas por alarma
+
+            // busco todos los pases del departamento de la alarma
+            $results = DB::connection('mysql2')->select('SELECT *,
+                                                    DATEDIFF(NOW(),fecha_ingreso) as diff
+                                                    FROM `exp_pase`
+                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        and fecha_salida like "%0000-00-00%"
+                                                        and fecha like "%'.$c->filtrofecha.'%"
+                                                        and codigo_destino ='.$alarma->departamento.'
+                                                        order by diff desc, registro desc
+                                                        limit 0,100');
+            $pases = Pase::hydrate($results);//convierto registro en objeto
+
+            $reporte = [];//creo array por departamento
+            $reporte_escalar = [];//creo array por departamento
+            // obtengo todos los pases y calculo el color segun la alarma
+            foreach ($pases as $pase)///por cada pase que encuentro le pongo color
+            {
+                    if($pase->diff< $alarma->amarrillo)
+                    {
+                        $color = 'white';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                    }
+                    elseif ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
+                    {
+                        $color = 'yellow';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                    }
+                    else
+                    {
+                        $color = 'red';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                        $reporte_escalar[] = $pase;
+                    }
+
+
+                    $reporte[] = $pase;
+            }
+
+                $email = $alarma->email;
+                $escalar = $alarma->escalar;
+                $mail = new \stdClass();
+                $mail->subject = 'Expedientes Facena - Reporte Semanal';
+                $mail->tipo = 1;
+                $mail->escalar = false;
+                Mail::to($email)->send(new DemoEmail($reporte,$mail));
+
+
+                ///escalar email
+                $mail = new \stdClass();
+                $mail->subject = 'Expedientes Facena - Reporte Semanal - Escalar';
+                $mail->tipo = 1;
+                $mail->escalar = true;
+                Mail::to('ivanss.s91@gmail.com')->send(new DemoEmail($reporte_escalar,$mail));
+
+
+
+
+
+
+        }
+
+
+        ///todos los resultados armos el mail
     }
 }

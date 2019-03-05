@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\configuracion;
+use App\Configuracion;
 use App\subcription;
 use App\Asunto;
 use GuzzleHttp\Client;
@@ -89,7 +89,7 @@ class AsuntoController extends Controller
 
     public function verAsuntos(){
 
-        $config = configuracion::first();
+        $config = Configuracion::first();
         $asuntos = DB::connection('mysql2')->select('SELECT * from mesa_exactas.TABLAS
         where codigo in ('.$config->filter.')'
             );

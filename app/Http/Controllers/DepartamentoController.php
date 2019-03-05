@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Departamento;
 use App\Pase;
+use App\Configuracion;
 use DB;
 class DepartamentoController extends Controller
 {
@@ -18,6 +19,7 @@ class DepartamentoController extends Controller
      */
     public function pasePorTomar($departamento_id){
 
+        $c = Configuracion::first();
 
         $departamento = Departamento::find($departamento_id);
         $results = DB::connection('mysql2')->select('SELECT *,
@@ -25,7 +27,7 @@ class DepartamentoController extends Controller
                                                     FROM `exp_pase`
                                                         where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
-                                                        and fecha like "%2019%"
+                                                        and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$departamento_id.'
                                                         order by registro desc
                                                         limit 0,100');
@@ -44,6 +46,7 @@ class DepartamentoController extends Controller
      */
 
      public function paseEnDepartamento($departamento_id){
+           $c = Configuracion::first();
 
         $departamento = Departamento::find($departamento_id);
         $results = DB::connection('mysql2')->select('SELECT *,
@@ -51,7 +54,7 @@ class DepartamentoController extends Controller
                                                     FROM `exp_pase`
                                                         where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
-                                                            and fecha like "%2019%"
+                                                            and fecha like "%'.$c->filtrofecha.'%"
                                                         and ultimo_destino ='.$departamento_id.'
 
                                                         order by registro desc
@@ -66,12 +69,11 @@ class DepartamentoController extends Controller
     }
 
 
-    /**
-     * Pases ya Tomados
-     * con fecha de ingreso distinta a 000
-     * y fecha de salida distanta a 000
-     * con codigo de destino igual al departamento
-     */
+    public function verDepartamentos(){
+          $departamentos = Departamento::all();
+
+          return view('departamentos')->with('departamentos',$departamentos);
+    }
 
 
 }

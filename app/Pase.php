@@ -16,7 +16,7 @@ class Pase extends Model
     public function asunto(){
         return $this->hasOne('App\Asunto','codigo','asunto_pase');
     }
-     public function destino(){
+     public function getDestino(){
         return $this->hasOne('App\Departamento','codigo','codigo_destino');
     }
      public function origen(){

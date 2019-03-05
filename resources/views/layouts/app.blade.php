@@ -63,9 +63,27 @@
                                        Salir
                                     </a>
                                     @if(Auth::user()->superadmin)
-                                            <a class="dropdown-item"href="{{ route('superadmin') }}">
-                                            SuperAdmin
+                                            <a class="dropdown-item"href="{{ route('departamentos') }}">
+                                            Departamentos
                                             </a>
+                                            <a class="dropdown-item" href="{{ route('superadmin') }}">
+                                            Configuración
+                                            </a>
+                                             <a class="dropdown-item" href="{{ route('alertas') }}">
+                                                Alertas
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('endepartamento',['departamento_id'=>983]) }}">
+                                                Pases en Rectorado
+                                            </a>
+                                             <a class="dropdown-item" href="{{ route('desdeRectorado') }}">
+                                                Pases Desde Rectorado
+                                            </a>
+                                            {{-- <a class="dropdown-item"href="{{ route('pasesportomar') }}">
+                                            Pases Por Tomar
+                                            </a>
+                                            <a class="dropdown-item"href="{{ route('endepartamento') }}">
+                                            Pases Por Departamento
+                                            </a> --}}
                                     @endif
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

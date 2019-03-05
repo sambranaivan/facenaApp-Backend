@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\configuracion;
+use App\Configuracion;
 class ConfiguracionController extends Controller
 {
     //
 
       public function set($id){
-    	$c = configuracion::first();
+    	$c = Configuracion::first();
     	echo $c->last_id;
 
     	$c->last_id = $id;
@@ -21,7 +21,7 @@ class ConfiguracionController extends Controller
     }
 
         public function get(){
-    	$c = configuracion::first();
+    	$c = Configuracion::first();
     	echo $c->last_id;
 
     }

@@ -11,7 +11,7 @@
                             <h2>Alertas</h2>
                         </div>
                         <div class="col-md-2">
-                            <a name="" id="" class="btn btn-primary" href="./alertas" role="button">
+                            <a name="" id="" class="btn btn-primary" href="{{route('seleccionarAlerta')}}" role="button">
                                 Nuevo
                             </a>
                         </div>

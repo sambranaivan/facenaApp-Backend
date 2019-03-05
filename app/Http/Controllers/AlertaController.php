@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\configuracion;
+use App\Configuracion;
 use App\Expediente;
 use App\subcription;
 
@@ -77,7 +77,7 @@ class AlertaController extends Controller
                     "title"=>$titulo,
                     "channelId"=> 'notif',
                     "body"=>$mensaje,
-                    
+
                     "data"=>[
                         "type"=>'exp',
                         'asunto'=>$data->getAsunto->descripcion,

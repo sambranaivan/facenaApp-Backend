@@ -54,7 +54,7 @@ $("#dpto_id").val(dpto_id);
                 @if ($editar)
 
                             <div class="card-body">
-                                <form class="form" action="./editarAlerta" method="POST" id="form">
+                            <form class="form" action="{{route('guardarAlerta')}}" method="POST" id="form">
                                     @csrf
                                 <div class="card-header">
                                     Configurar Alertas de Pases en espera de ser tomadas
@@ -154,8 +154,11 @@ $("#dpto_id").val(dpto_id);
                                     </div>
                                     <div class="row"  style="padding-top: 10px;">
 
-                                        <div class="col-md-12 text-right ">
-
+                                        <div class="col-md-1 ">
+                                        <a class="btn btn-danger" href="{{route('borrarAlerta',['id'=>$selected->codigo])}}" role="button">
+                                            Borrar
+                                            </a></div>
+                                            <div class="col-md-11 text-right ">
                                             <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
                                         </div>
                                     </div>

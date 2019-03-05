@@ -28,12 +28,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'AsuntoController@verAsuntos');
 
     Route::get('/superadmin','UserController@superAdmin')->name('superadmin');
-    Route::get('/superadmin/alertas','AlarmaController@alertas');
-    Route::post('/superadmin/alertas','AlarmaController@verAlertaDetalle');//TODO
-    Route::post('/superadmin/editarAlerta','AlarmaController@editarAlerta');
+    Route::get('/alertas','AlarmaController@alertas')->name('seleccionarAlerta');
+    Route::post('/alertas','AlarmaController@verAlertaDetalle')->name('editarAlerta');
+    Route::post('/editarAlerta','AlarmaController@editarAlerta')->name('guardarAlerta');;
+    Route::get('/borrarAlerta/{id}','AlarmaController@borrarAlerta')->name('borrarAlerta');;
     Route::post('/updatefilters','UserController@updateFilters');
     // rutas de configuracion
-    Route::get('/superadmin/listaAlertas','AlarmaController@verListado');
+    Route::get('/listaAlertas','AlarmaController@verListado')->name('alertas');
     Route::get('/config/lastid/{lastid}', 'ConfiguracionController@set');
     Route::get('/config/lastid/', 'ConfiguracionController@get');
 
@@ -45,5 +46,9 @@ Route::get('/checkupdate','AlertaController@checkUpdate');
 ///probar notificacion
 Route::get('/test','AsuntoController@sendNotificacion');
 
-Route::get('/departamento/paseportomar/{departamento_id}','DepartamentoController@pasePorTomar');
-Route::get('/departamento/paseendepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento');
+Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->name('pasesportomar');
+Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
+Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
+Route::get('/rectorado','PaseController@desdeRectorado')->name('desdeRectorado');
+Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
+Route::get('/email','AlarmaController@send')->name('email');
