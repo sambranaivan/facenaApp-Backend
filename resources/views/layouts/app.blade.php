@@ -19,6 +19,7 @@
     <link rel="shortcut icon" href="{{{ asset('img/icon.png') }}}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -62,7 +63,7 @@
                                        Salir
                                     </a>
                                     @if(Auth::user()->superadmin)
-                                            <a class="dropdown-item" href="superadmin">
+                                            <a class="dropdown-item"href="{{ route('superadmin') }}">
                                             SuperAdmin
                                             </a>
                                     @endif

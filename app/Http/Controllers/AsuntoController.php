@@ -74,14 +74,14 @@ class AsuntoController extends Controller
     public function sendNotificacion()
     {
         $client = new Client();
-
+        $user = User::find(1);
              $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
             'form_params' =>
             [
-                'to'=> "ExponentPushToken[YK3CFNO9JLwjZc0LC-ZYt8]", //User->getToken();
+                'to'=> $user->token, //User->getToken();
                 "title"=>"titulo",
                 "body"=>"cuerpo",
-                "data"=>['message'=>'cuna ultima prueba da']]
+                "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
             ]);
 
     }

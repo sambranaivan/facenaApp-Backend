@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Alarma' => $baseDir . '/app/Alarma.php',
     'App\\Asunto' => $baseDir . '/app/Asunto.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Departamento' => $baseDir . '/app/Departamento.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Expediente' => $baseDir . '/app/Expediente.php',
     'App\\Http\\Controllers\\AlertaController' => $baseDir . '/app/Http/Controllers/AlertaController.php',
@@ -19,11 +21,8 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\ConfiguracionController' => $baseDir . '/app/Http/Controllers/ConfiguracionController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
-    'App\\Http\\Controllers\\ExpedienteController' => $baseDir . '/app/Http/Controllers/ExpedienteController.php',
+    'App\\Http\\Controllers\\DepartamentoController' => $baseDir . '/app/Http/Controllers/DepartamentoController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\IniciadorController' => $baseDir . '/app/Http/Controllers/IniciadorController.php',
-    'App\\Http\\Controllers\\PaseController' => $baseDir . '/app/Http/Controllers/PaseController.php',
-    'App\\Http\\Controllers\\SubcriptionController' => $baseDir . '/app/Http/Controllers/SubcriptionController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

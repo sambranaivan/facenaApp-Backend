@@ -77,7 +77,9 @@ class AlertaController extends Controller
                     "title"=>$titulo,
                     "channelId"=> 'notif',
                     "body"=>$mensaje,
+                    
                     "data"=>[
+                        "type"=>'exp',
                         'asunto'=>$data->getAsunto->descripcion,
                         'expediente'=>[ 'iniciador' => $data->detalle_iniciador,
                                         'numero' => $data->numero,
@@ -91,6 +93,8 @@ class AlertaController extends Controller
 
                 ]]);
                     echo 'notificacion enviada</br>';
+
+
         }
 
 

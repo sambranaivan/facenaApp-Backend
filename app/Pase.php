@@ -16,11 +16,11 @@ class Pase extends Model
     public function asunto(){
         return $this->hasOne('App\Asunto','codigo','asunto_pase');
     }
-     public function origen(){
-        return $this->hasOne('App\Iniciador','registro','codigo_destino');
+     public function destino(){
+        return $this->hasOne('App\Departamento','codigo','codigo_destino');
     }
-     public function anterior(){
-        return $this->hasOne('App\Iniciador','registro','ultimo_destino');
+     public function origen(){
+        return $this->hasOne('App\Departamento','codigo','ultimo_destino');
     }
 
     public function getExpediente(){
