@@ -1,5 +1,7 @@
 
+@if($mail->tipo)
 <p>Reporte Semanal de Pases para el Departamento {{$demo[0]->destino}}</p>
+
 
 
 <table class="table">
@@ -37,3 +39,7 @@
 Gracias,
 <br/>
 
+@else
+Este es un Mail de Prueba
+
+@endif

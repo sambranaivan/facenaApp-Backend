@@ -26,7 +26,7 @@ class DemoEmail extends Mailable
      */
     public function __construct($demo,$mail)
     {
-        $this->demo = $demo;
+        $this->demo = $demo;///registros
         $this->mail = $mail;
     }
 
@@ -39,7 +39,7 @@ class DemoEmail extends Mailable
     {
         return $this->from('sender@example.com')
                     ->view('mails.demo')
-                    ->subject($this->mail->subject)
-                    ->text('mails.demo_plain');
+                    ->subject($this->mail->subject);
+                    // ->text('mails.demo_plain');
     }
 }

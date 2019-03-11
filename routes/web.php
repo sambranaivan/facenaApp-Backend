@@ -51,4 +51,5 @@ Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDep
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
 Route::get('/rectorado','PaseController@desdeRectorado')->name('desdeRectorado');
 Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
-Route::get('/email','AlarmaController@send')->name('email');
+
+Route::get('testmail','AlarmaController@testmail');
