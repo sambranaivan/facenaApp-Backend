@@ -151,7 +151,7 @@ public function borrarAlerta($departamento_id){
             // busco todos los pases del departamento de la alarma
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
-                                                    FROM `exp_pase`
+                                                    FROM `EXPO_PASE`
                                                         where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
