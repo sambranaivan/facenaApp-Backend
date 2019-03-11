@@ -43,3 +43,7 @@ Route::get('/checkupdate','AlertaController@checkUpdate');
 Route::get('/test','AsuntoController@sendNotificacion');
 //  TODO route de superadmin
 
+
+Route::get('/curl',function(){
+return view('curl');
+});

@@ -1,8 +1,8 @@
 # php -- BEGIN cPanel-generated handler, do not edit
 <IfModule mime_module>
-
 #PHP version
-
+SetEnv http_proxy "https://proxyroca:3128/"
+SetEnv https_proxy "https://proxyroca:3128/"
   AddType application/x-httpd-ea-php71 .php .php7 .phtml
 
 # php -- END cPanel-generated handler, do not edit

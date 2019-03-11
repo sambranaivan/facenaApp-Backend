@@ -78,12 +78,12 @@ class AsuntoController extends Controller
              $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
             'form_params' =>
             [
-                'to'=> "ExponentPushToken[YK3CFNO9JLwjZc0LC-ZYt8]", //User->getToken();
+                'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
                 "title"=>"titulo",
                 "body"=>"cuerpo",
                 "data"=>['message'=>'cuna ultima prueba da']]
             ]);
-
+	echo "Enviado Ok";
     }
 
 
