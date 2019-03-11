@@ -8,7 +8,7 @@ class Departamento extends Model
 {
     //
     protected $connection = 'mysql2';
-    protected $table = 'inicia';
+    protected $table = 'INICIA';
     protected $primaryKey  = 'codigo';
 
 
