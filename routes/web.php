@@ -49,6 +49,7 @@ Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->na
 Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
 Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
+Route::get('/exp/{exp}','DepartamentoController@movimientos')->name('movimientos');
 
 
 ////acciones CRON

@@ -95,5 +95,13 @@ class DepartamentoController extends Controller
 
     }
 
+    public function movimientos($exp_numero)
+    {
+        $e = Expediente::where('numero','=',$exp_numero)->first();
+
+        // print_r($e);
+        return view('movimientos')->with('expediente',$e);
+    }
+
 
 }
