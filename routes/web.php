@@ -40,7 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/checkupdate','AlertaController@checkUpdate');
 
 
 ///probar notificacion
@@ -49,7 +48,10 @@ Route::get('/test','AsuntoController@sendNotificacion');
 Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->name('pasesportomar');
 Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
-Route::get('/rectorado','PaseController@desdeRectorado')->name('desdeRectorado');
-Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
+Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
 
+
+////acciones CRON
+Route::get('/checkupdate','AlertaController@checkUpdate');
+Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
 Route::get('testmail','AlarmaController@testmail');

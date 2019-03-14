@@ -72,11 +72,11 @@
                                              <a class="dropdown-item" href="{{ route('alertas') }}">
                                                 Alertas
                                             </a>
-                                            <a class="dropdown-item" href="{{ route('endepartamento',['departamento_id'=>983]) }}">
+                                            {{-- <a class="dropdown-item" href="{{ route('endepartamento',['departamento_id'=>983]) }}">
                                                 Pases en Rectorado
-                                            </a>
-                                             <a class="dropdown-item" href="{{ route('desdeRectorado') }}">
-                                                Pases Desde Rectorado
+                                            </a> --}}
+                                             <a class="dropdown-item" href="{{ route('rectorado') }}">
+                                                Rectorado
                                             </a>
                                             {{-- <a class="dropdown-item"href="{{ route('pasesportomar') }}">
                                             Pases Por Tomar

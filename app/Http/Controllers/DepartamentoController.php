@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Departamento;
 use App\Pase;
 use App\Configuracion;
+use App\Expediente;
 use DB;
 class DepartamentoController extends Controller
 {
@@ -73,6 +74,25 @@ class DepartamentoController extends Controller
           $departamentos = Departamento::all();
 
           return view('departamentos')->with('departamentos',$departamentos);
+    }
+
+
+    public function rectorado(){
+        $config = Configuracion::first();
+        $rectorado_id = $config->rectorado_id;
+        ///obtener pases que tengan algo que ver con rectorado
+        $expedientes = DB::connection('mysql2')->select('SELECT e.* FROM EXPEDIEN e left JOIN EXP_PASE p on e.numero = p.numero
+                    WHERE p.codigo_destino = 983  and p.fecha >= "2019-01-01" order by p.registro desc' );
+//         SELECT e.* FROM expedien e left JOIN exp_pase p
+// on e.numero = p.numero
+// WHERE
+// p.codigo_destino = 983
+// and p.fecha >= "2019-01-01"
+        $expedientes = Expediente::hydrate($expedientes);
+
+
+        return view('rectorado')->with('expedientes',$expedientes);
+
     }
 
 

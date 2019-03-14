@@ -12,7 +12,12 @@ class Expediente extends Model
     protected $primaryKey  = 'registro';
 
     public function getAsunto(){
+
         return $this->hasOne("App\Asunto",'codigo','asunto');
+    }
+
+     public function getPases(){
+        return $this->hasMany("App\Pase",'numero','numero');
     }
 
 }
