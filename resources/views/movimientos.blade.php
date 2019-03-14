@@ -13,7 +13,7 @@
 
                 <div class="card-body">
 
-                        <table class="table table-sm">
+                        <table class="table table-sm" style="font-size:0.8em">
                             <thead>
                                 <tr>
                                     <td>registro</td>

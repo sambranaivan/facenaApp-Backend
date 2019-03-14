@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                        <table class="table table-sm">
+                        <table class="table table-sm" style="font-size:0.8em">
                             <thead>
                                 <tr>
                                     <td>N° de Expediente</td>
@@ -26,7 +26,7 @@
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                     <td>{{$item->getPases->last()->destino}}</td>
                                     <td>{{$item->getPases->last()->fecha}}</td>
-                                    <td scope="row"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Ver Movimientos {{$item->getPases->count()}}</a></td>
+                                    <td scope="row"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Ver Movimientos <span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
                                     </tr>
                                 @endforeach
 
