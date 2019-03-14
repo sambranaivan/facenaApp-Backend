@@ -13,18 +13,18 @@
                             <thead>
                                 <tr>
                                     <td>N° de Expediente</td>
-                                    <td>Movimientos</td>
+                                    <td>Actual</td>
                                     <td>Ultimo Movimiento</td>
-                                    <td>Actual<td>
+                                    <td><td>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($expedientes as $item)
                                     <tr>
                                     <td scope="row">{{$item->numero}}</td>
-                                    <td>{{$item->getPases[0]->destino}}</td>
-                                    <td>{{$item->getPases[0]->fecha}}</td>
-                                    <td scope="row"><a name="" id="" class="btn btn-primary btn-block" href="#" role="button">Ver Movimientos {{$item->getPases->count()}}</a></td>
+                                    <td>{{$item->getPases->last()->destino}}</td>
+                                    <td>{{$item->getPases->last()->fecha}}</td>
+                                    <td scope="row"><a name="" id="" class="btn btn-small btn-primary btn-block" href="#" role="button">Ver Movimientos {{$item->getPases->count()}}</a></td>
                                     </tr>
                                 @endforeach
 
