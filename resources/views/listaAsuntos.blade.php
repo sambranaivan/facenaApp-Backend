@@ -26,7 +26,7 @@
 
             if(estado == 'activar')
             {
-                $.get('subscribe',{asunto:asunto},function(data){
+                $.get("{{route('subscribe')}}",{asunto:asunto},function(data){
                 console.log(data);
                 if(data == 'registrado'){
                     boton.html("desactivar").removeClass('btn-success').addClass('btn-danger');
@@ -37,7 +37,7 @@
             }
             else
             {
-                 $.get('unsubscribe',{asunto:asunto},function(data){
+                 $.get("{{route('unsubscribe')}}",{asunto:asunto},function(data){
                 console.log(data);
                 if(data == 'unsubscribe ok'){
                     boton.html("Activar").removeClass('btn-danger').addClass('btn-success');
@@ -107,9 +107,9 @@
                 <div class="col-md-8">
                     <h4>Activar y Desactivar Alertas
                     @if($filtro)
-                        <a class="btn btn-success" href="asuntos">Ver todos</a>
+                    <a class="btn btn-success" href="{{route('notificaciones_todos')}}">Ver todos</a>
                     @else
-                        <a class="btn btn-success" href="./">Ver más usados</a>
+                        <a class="btn btn-success" href="{{route('notificaciones')}}">Ver más usados</a>
                     @endif</h4>
                 </div>
                 <div class="col-md-4  text-right">

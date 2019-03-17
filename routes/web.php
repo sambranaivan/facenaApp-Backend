@@ -17,15 +17,20 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => ['auth']], function () {
     //
-    Route::get('/asuntos','AsuntoController@verTodos');
-    Route::get('/subscribe','AsuntoController@subscribe');
-    Route::get('/unsubscribe','AsuntoController@unsubscribe');
-    Route::get('/', 'AsuntoController@verAsuntos');
+    Route::get('/asuntostodos','AsuntoController@verTodos')->name('notificaciones_todos');///;//Ver todos los Asuntos
+    Route::get('/asuntos', 'AsuntoController@verAsuntos')->name('notificaciones');///Ver Asuntos Filtrados
+
+    Route::get('/subscribe','AsuntoController@subscribe')->name('subscribe');///API subscribirse a un asusnto para notificaciones
+    Route::get('/unsubscribe','AsuntoController@unsubscribe')->name('unsubscribe');///API desubscribirse a un asusnto para notificaciones
+
+    Route::get('/', function(){
+        return view('buscar_expediente');
+    })->name('buscar_expediente');
 
     Route::get('/superadmin','UserController@superAdmin')->name('superadmin');
     Route::get('/alertas','AlarmaController@alertas')->name('seleccionarAlerta');
@@ -49,7 +54,9 @@ Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->na
 Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
 Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
-Route::get('/exp/{exp}','DepartamentoController@movimientos')->name('movimientos');
+Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');
+Route::get('/expediente/{hash}','ExpedienteController@verExpediente')->name('verExpediente');
+Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name('buscarExpediente');
 
 
 ////acciones CRON

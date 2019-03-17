@@ -17,11 +17,11 @@
                         <table class="table table-sm" style="font-size:0.8em">
                             <thead>
                                 <tr>
-                                    <td>registro</td>
+                                    <td>Registro</td>
                                     {{-- <td>numero</td> --}}
-                                    <td>fecha</td>
-                                    <td>fecha_ingreso</td>
-                                    <td>fecha_salida</td>
+                                    <td>Ultimo Movimiento</td>
+                                    {{-- <td>fecha_ingreso</td>
+                                    <td>fecha_salida</td> --}}
                                     <td>Desde</td>
                                     <td></td>
                                     <td>Hacia</td>
@@ -29,13 +29,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expediente->getPases->reverse() as $item)
+                                <?php $item = $expediente->getPases->reverse()->first() ;?>
+
                                     <tr>
                                         <td>{{$item->registro}}</td>
                                         {{-- <td>{{$item->numero}}</td> --}}
                                         <td>{{$item->fecha}}</td>
-                                        <td>{{$item->fecha_ingreso}}</td>
-                                        <td>{{$item->fecha_salida}}</td>
+                                        {{-- <td>{{$item->fecha_ingreso}}</td>
+                                        <td>{{$item->fecha_salida}}</td> --}}
                                         @if($item->ultimo_destino)
                                         <td>{{$item->ultimo_destino}}-{{$item->origen->descripcion}}</td>
                                         @else
@@ -44,7 +45,7 @@
                                         <td><i class="fas fa-arrow-right"></i></td>
                                         <td>{{$item->codigo_destino}}-{{$item->destino}}</td>
                                     </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
 
                             </tbody>
                         </table>

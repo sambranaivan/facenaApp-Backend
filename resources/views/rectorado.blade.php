@@ -13,6 +13,7 @@
                             <thead>
                                 <tr>
                                     <td>N° de Expediente</td>
+                                    {{-- <td>Hash</td> --}}
                                     <td>Asunto</td>
                                     <td>Actual</td>
                                     <td>Ultimo Movimiento</td>
@@ -23,6 +24,7 @@
                                 @foreach ($expedientes as $item)
                                     <tr>
                                     <td scope="row">{{$item->numero}}</td>
+                                    {{-- <td scope="row">{{$item->hash()}}</td> --}}
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                     <td>{{$item->getPases->last()->destino}}</td>
                                     <td>{{$item->getPases->last()->fecha}}</td>

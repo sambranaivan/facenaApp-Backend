@@ -78,6 +78,12 @@
                                              <a class="dropdown-item" href="{{ route('rectorado') }}">
                                                 Rectorado
                                             </a>
+                                             <a class="dropdown-item" href="{{ route('notificaciones') }}">
+                                                Notificaciones
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
+                                                Seguimiento de Expedientes
+                                            </a>
                                             {{-- <a class="dropdown-item"href="{{ route('pasesportomar') }}">
                                             Pases Por Tomar
                                             </a>
