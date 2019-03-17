@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/listaAlertas','AlarmaController@verListado')->name('alertas');
     Route::get('/config/lastid/{lastid}', 'ConfiguracionController@set');
     Route::get('/config/lastid/', 'ConfiguracionController@get');
+    Route::get('/config/users/', 'UserController@userList');//TODO
 
 });
 

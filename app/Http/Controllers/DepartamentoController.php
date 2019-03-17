@@ -33,7 +33,7 @@ class DepartamentoController extends Controller
                                                         order by registro desc
                                                         limit 0,100');
         $pases = Pase::hydrate($results);
-        // TODO filtros temporales para noticiaciones
+
 
 
         return view('pasesPorTomar',(['pases'=>$pases,'departamento'=>$departamento]));
@@ -64,7 +64,7 @@ class DepartamentoController extends Controller
 
 
         $pases = Pase::hydrate($results);
-        // TODO filtros temporales para noticiaciones
+
 
         return view('paseEnDepartamento',(['pases'=>$pases,'departamento'=>$departamento]));
     }

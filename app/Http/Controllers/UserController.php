@@ -34,5 +34,9 @@ class UserController extends Controller
         return redirect('superadmin');
     }
 
+    public function userList(){
+
+    }
+
 
 }
