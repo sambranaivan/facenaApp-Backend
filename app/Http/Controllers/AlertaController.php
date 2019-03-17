@@ -93,7 +93,7 @@ class AlertaController extends Controller
 
                 ]]);
                     echo 'notificacion enviada</br>';
-
+                            return true;
 
         }
 
