@@ -28,10 +28,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/subscribe','AsuntoController@subscribe')->name('subscribe');///API subscribirse a un asusnto para notificaciones
     Route::get('/unsubscribe','AsuntoController@unsubscribe')->name('unsubscribe');///API desubscribirse a un asusnto para notificaciones
 
-    Route::get('/', function(){
-        return view('buscar_expediente');
-    })->name('buscar_expediente');
-
     Route::get('/superadmin','UserController@superAdmin')->name('superadmin');
     Route::get('/alertas','AlarmaController@alertas')->name('seleccionarAlerta');
     Route::post('/alertas','AlarmaController@verAlertaDetalle')->name('editarAlerta');
@@ -44,18 +40,24 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/config/lastid/', 'ConfiguracionController@get');
     Route::get('/config/users/', 'UserController@userList');//TODO
 
+
+    Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->name('pasesportomar');
+Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
+Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
+Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
+Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');
+
+
 });
 
+Route::get('/', function(){
+    return view('buscar_expediente');
+})->name('buscar_expediente');
 
 
 ///probar notificacion
 Route::get('/test','AsuntoController@sendNotificacion');
 
-Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->name('pasesportomar');
-Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
-Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
-Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
-Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');
 Route::get('/expediente/{hash}','ExpedienteController@verExpediente')->name('verExpediente');
 Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name('buscarExpediente');
 
