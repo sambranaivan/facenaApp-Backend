@@ -230,14 +230,15 @@ public function borrarAlerta($departamento_id){
     public function probarMail()
     {
 
-        // El mensaje
-        $mensaje = "Línea 1\r\nLínea 2\r\nLínea 3";
+$para      = 'sambranaivan@gmail.com';
+$titulo    = 'El título';
+$mensaje   = 'Hola';
+$cabeceras = 'From: subsecretaria@exa.unne.edu.ar' . "\r\n" .
+            'Reply-To: webmaster@example.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
 
-        // Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
-        $mensaje = wordwrap($mensaje, 70, "\r\n");
+        mail($para, $titulo, $mensaje, $cabeceras);
 
-        // Enviarlo
-        mail('sambranaivan@gmail.com', 'Mi título', $mensaje);
 
     }
 }
