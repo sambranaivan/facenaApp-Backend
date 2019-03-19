@@ -233,7 +233,7 @@ public function borrarAlerta($departamento_id){
 $para      = 'sambranaivan@gmail.com';
 $titulo    = 'El título';
 $mensaje   = 'Hola';
-$cabeceras = 'From: subsecretaria@exa.unne.edu.ar' . "\r\n" .
+$cabeceras = 'From: vampiro@exa.unne.edu.ar' . "\r\n" .
             'Reply-To: webmaster@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
