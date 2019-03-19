@@ -153,6 +153,7 @@ public function borrarAlerta($departamento_id){
         $c = Configuracion::first();
         ////obtengo todas las alarmas
         $alarmas = Alarma::where('tipo',1)->get();///alerta por pase en espera
+        // en el 00-00-00 y 00-00-00
 
         foreach ($alarmas as $alarma)
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
@@ -161,7 +162,7 @@ public function borrarAlerta($departamento_id){
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$alarma->departamento.'
@@ -223,5 +224,20 @@ public function borrarAlerta($departamento_id){
 
 
         ///todos los resultados armos el mail
+    }
+
+
+    public function probarMail()
+    {
+
+        // El mensaje
+        $mensaje = "Línea 1\r\nLínea 2\r\nLínea 3";
+
+        // Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
+        $mensaje = wordwrap($mensaje, 70, "\r\n");
+
+        // Enviarlo
+        mail('sambranaivan@gmail.com', 'Mi título', $mensaje);
+
     }
 }

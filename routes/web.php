@@ -65,7 +65,7 @@ Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name(
 ////acciones CRON
 Route::get('/checkupdate','AlertaController@checkUpdate');
 Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
-Route::get('testmail','AlarmaController@testmail');
+Route::get('testmail','AlarmaController@probarMail');
 
 
 ////parte de registros
