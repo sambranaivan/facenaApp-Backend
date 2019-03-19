@@ -81,7 +81,7 @@ class HomeController extends Controller
             height: 2.54cm;
             float:left;
             display:block;
-            border:1px dotted black;
+            // border:1px dotted black;
             text-align:center;
             box-sizing:border-box;
         }
