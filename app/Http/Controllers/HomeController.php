@@ -81,13 +81,14 @@ class HomeController extends Controller
             height: 2.54cm;
             float:left;
             display:block;
-            // border:1px solid black;
+            border:1px dotted black;
             text-align:center;
+            box-sizing:border-box;
         }
 
         .etiqueta .contains{
-            width:90%;
-            margin:5%;
+            width:100%;
+            margin-top:5%;
             height:90%;
         }
         @media print {
@@ -138,7 +139,7 @@ class HomeController extends Controller
 
                 echo '<div class="etiqueta"><div class="contains">
                 <span>Facultad de Ciencias Exactas</span>
-                <img src="data:image/png;base64,' . DNS1D::getBarcodePNG($numero, "C128",1.05,40,array(1,1,1),true) . '" alt="barcode"  title="name" />
+                <img src="data:image/png;base64,' . DNS1D::getBarcodePNG($numero, "C128",1.1,40,array(1,1,1),true) . '" alt="barcode"  title="name" />
                 <span class="numero"><strong>'.$numero.'</strong></span></br>
                 <span class="hash">'.$hash.'</span>
                 </div>
