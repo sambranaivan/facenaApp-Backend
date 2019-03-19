@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><strong>Pases Por Tomar</strong> {{$departamento->descripcion}}</div>
 
@@ -17,12 +17,12 @@
                         </tr>
                     @foreach ($pases as $pase)
                         <tr>
-                        <td>{{$pase->numero}}</td>
-                        <td>{{$pase->fecha_ingreso}}</td>
+                        <td style="width:9rem">{{$pase->numero}}</td>
+                        <td>{{$pase->fecha}}</td>
                         <td>{{$pase->diff}}</td>
                          <td>
                             @isset($pase->origen)
-                                {{$pase->origen->descripcion}}
+                               {{$pase->origen->codigo}}-{{$pase->origen->descripcion}}
                             @endisset
                         </td>
                         </tr>

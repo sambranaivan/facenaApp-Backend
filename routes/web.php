@@ -64,3 +64,14 @@ Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name(
 Route::get('/checkupdate','AlertaController@checkUpdate');
 Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
 Route::get('testmail','AlarmaController@testmail');
+
+
+////parte de registros
+Route::get('/registros','RegistroController@test');
+
+
+Route::get('/etiquetas',function(){
+    return view('barcode');
+})->name('etiquetas');
+
+Route::get('/barcode','HomeController@print')->name('barcode');

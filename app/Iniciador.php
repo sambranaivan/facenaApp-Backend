@@ -15,4 +15,6 @@ class Iniciador extends Model
     public function getPases(){
         return $this->hasMany('App\Pase','codigo_destino','registro');
     }
+
+
 }

@@ -30,4 +30,8 @@ class Pase extends Model
 
 
 
+
+
+
+
 }

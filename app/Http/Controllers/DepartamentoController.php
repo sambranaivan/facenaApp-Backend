@@ -11,12 +11,20 @@ use App\Expediente;
 use DB;
 class DepartamentoController extends Controller
 {
-    //
+
+
     /**
-    * Pase pendientes para tomar por el departamento
-    *con fecha de ingreso distinto de 0000
-    *y fecha de salida igual  0000
-    *codigo destino igual al departamento
+     * fecha_ingreso|  fecha_salida
+     *  0000-00-00      0000-00-00   ||| No lo tomó en espera
+     *  XXXX-XX-XX      0000-00-00   ||| En Departamento
+     *  XXXX-XX-XX      XXXX-XX-XX   ||| Ya paso a otro dpto
+     *  0000-00-00      XXXX-XX-XX   ||| Inicio de Pase
+    */
+
+
+
+    /**
+     * Por tomar = 00
      */
     public function pasePorTomar($departamento_id){
 
@@ -24,9 +32,9 @@ class DepartamentoController extends Controller
 
         $departamento = Departamento::find($departamento_id);
         $results = DB::connection('mysql2')->select('SELECT *,
-                                                    DATEDIFF(NOW(),fecha_ingreso) as diff
+                                                    DATEDIFF(NOW(),fecha) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$departamento_id.'
@@ -40,10 +48,8 @@ class DepartamentoController extends Controller
     }
 
     /**
-    *Pases en departamento
-    *con fecha de ingreso igual a 0000
-    *y fecha de salida igual a 0000
-    *codigo ultimo_destino igual al departamento
+    *Pases en departamento = XO
+    *codigo destino igual al departamento
      */
 
      public function paseEnDepartamento($departamento_id){
@@ -56,7 +62,7 @@ class DepartamentoController extends Controller
                                                         where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                             and fecha like "%'.$c->filtrofecha.'%"
-                                                        and ultimo_destino ='.$departamento_id.'
+                                                        and codigo_destino ='.$departamento_id.'
 
                                                         order by registro desc
                                                         limit 0,100
@@ -81,7 +87,7 @@ class DepartamentoController extends Controller
         $config = Configuracion::first();
         $rectorado_id = $config->rectorado_id;
         ///obtener pases que tengan algo que ver con rectorado
-        $expedientes = DB::connection('mysql2')->select('SELECT e.* FROM EXPEDIEN e left JOIN EXP_PASE p on e.numero = p.numero
+        $expedientes = DB::connection('mysql2')->select('SELECT e.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e left JOIN EXP_PASE p on e.numero = p.numero
                     WHERE p.codigo_destino = 983  and p.fecha >= "2019-01-01" order by p.registro desc' );
 //         SELECT e.* FROM expedien e left JOIN exp_pase p
 // on e.numero = p.numero

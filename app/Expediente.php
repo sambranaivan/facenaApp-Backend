@@ -28,4 +28,6 @@ class Expediente extends Model
         return $hash;
     }
 
+
+
 }
