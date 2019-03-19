@@ -230,11 +230,11 @@ public function borrarAlerta($departamento_id){
     public function probarMail()
     {
 
-$para      = 'emanuelirrazabal@gmail.com';
-$titulo    = 'El título';
-$mensaje   = 'Hola';
-$cabeceras = 'From: subsecretaria@exa.unne.edu.ar' . "\r\n" .
-            'Reply-To: webmaster@example.com' . "\r\n" .
+        $para      = 'emanuelirrazabal@gmail.com,sambranaivan@gmail.com';
+        $titulo    = 'El título';
+        $mensaje   = 'Hola';
+        $cabeceras = 'From: subsecretaria@exa.unne.edu.ar' . "\r\n" .
+                    'Reply-To: webmaster@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         mail($para, $titulo, $mensaje, $cabeceras);
