@@ -231,7 +231,7 @@ public function borrarAlerta($departamento_id){
     {
 
 $para      = 'sambranaivan@gmail.com';
-$titulo    = 'El título';
+$titulo    = 'Oferta Laboral';
 $mensaje   = 'Hola';
 $cabeceras = 'From: vampiro@exa.unne.edu.ar' . "\r\n" .
             'Reply-To: webmaster@example.com' . "\r\n" .
