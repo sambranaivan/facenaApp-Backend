@@ -74,4 +74,4 @@ Route::get('/etiquetas',function(){
     return view('barcode');
 })->name('etiquetas');
 
-Route::get('/barcode','HomeController@print')->name('barcode');
+Route::post('/etiquetas','HomeController@print')->name('barcode');

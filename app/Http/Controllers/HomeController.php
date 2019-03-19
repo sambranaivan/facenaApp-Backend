@@ -33,10 +33,8 @@ class HomeController extends Controller
      */
 
     //
-    public function print()
+    public function print(request $request)
     {
-        // $desde = $request->desde;
-        // $paginas = $request->paginas;
         echo '<style>
         body {
         background: rgb(204,204,204);
@@ -51,7 +49,7 @@ class HomeController extends Controller
         display: block;
         margin: 0 auto;
         //   margin-bottom: 0.5cm;
-        box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+        // box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
         }
         page[size="A4"] {
         width: 21.6cm;
@@ -100,29 +98,55 @@ class HomeController extends Controller
 
 
         }</style>';
+
+        $number = $request->numero;
+       for($j = 0; $j < $request->paginas; $j++)
+       {
         echo '<page size="A4">';
 
-// echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($numero, "C128",1,40,array(1,1,1),true) . '" alt="barcode"  title="name" />';
-    for ($i=10; $i < 54; $i++)
-    {
-        $numero = '09-2019-000'.$i;
-                $hash = str_replace("-","",$numero);
-//         ///integer to base 36
-        $hash = strtoupper(base_convert($hash,10,36));
-//         echo"</br>";
-//         echo $numero;
-// echo"</br>";
-//         echo $hash;
-    echo '<div class="etiqueta"><div class="contains">
-    <span>Facultad de Ciencias Exactas</span>
-     <img src="data:image/png;base64,' . DNS1D::getBarcodePNG($numero, "C128",1.05,40,array(1,1,1),true) . '" alt="barcode"  title="name" />
-    <span class="numero"><strong>'.$numero.'</strong></span></br>
-    <span class="hash">'.$hash.'</span>
-     </div>
-     </div>';
-    }
+// echo '<img src="data:image/png;ba(se64,' . DNS1D::getBarcodePNG($numero, "C128",1,40,array(1,1,1),true) . '" alt="barcode"  title="name" />';
+                for ($i=0 + (44*$j); $i < 44+(44*$j); $i++)
+                {
 
-echo '</page>';
+                    $numero = '09-2019-';
+                    $number = $number + $i;
+                    if($number < 10)
+                    {
+                        $numero .='0000'.$number;
+                    }
+                    elseif($number < 100)
+                    {
+                        $numero .='000'.$number;
+                    }
+                    elseif($number < 1000)
+                    {
+                        $numero .='00'.$number;
+                    }
+                    elseif($number < 10000)
+                    {
+                        $numero .='0'.$number;
+                    }
+                    elseif($number < 100000)
+                    {
+                        $numero .= $number;
+                    }
+
+
+                            $hash = str_replace("-","",$numero);
+            //         ///integer to base 36
+                    $hash = strtoupper(base_convert($hash,10,36));
+
+                echo '<div class="etiqueta"><div class="contains">
+                <span>Facultad de Ciencias Exactas</span>
+                <img src="data:image/png;base64,' . DNS1D::getBarcodePNG($numero, "C128",1.05,40,array(1,1,1),true) . '" alt="barcode"  title="name" />
+                <span class="numero"><strong>'.$numero.'</strong></span></br>
+                <span class="hash">'.$hash.'</span>
+                </div>
+                </div>';
+                }
+
+        echo '</page>';
+}//end for paginas
     }
 }
 
