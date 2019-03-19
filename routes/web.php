@@ -80,7 +80,7 @@ Route::post('/etiquetas','HomeController@print')->name('barcode');
 
 
 Route::get("/cli",function(){
-
+    echo "un nuevo cambio";
     $salida = shell_exec('git pull origin master');
 echo "<a>$salida</a>";
 });
