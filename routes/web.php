@@ -77,3 +77,11 @@ Route::get('/etiquetas',function(){
 })->name('etiquetas');
 
 Route::post('/etiquetas','HomeController@print')->name('barcode');
+
+
+Route::get("/cli",function(){
+
+    $salida = shell_exec('ls -lart');
+echo "<a>$salida</a>";
+echo "adad";
+});
