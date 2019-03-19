@@ -81,7 +81,7 @@ Route::post('/etiquetas','HomeController@print')->name('barcode');
 
 Route::get("/cli",function(){
 
-    $salida = shell_exec('ls -lart');
+    $salida = shell_exec('git status');
 echo "<a>$salida</a>";
 echo "adad";
 });
