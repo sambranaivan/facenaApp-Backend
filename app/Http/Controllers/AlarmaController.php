@@ -139,14 +139,6 @@ public function borrarAlerta($departamento_id){
           return redirect()->route('alertas');
     }
 
-    public function testmail(){
-          $mail = new \stdClass();
-                $email = 'sambranaivan@gmail.com';
-                $mail->subject = 'Expedientes Facena - Reporte Semanal';
-                $mail->tipo = 0;
-                $mail->escalar = false;
-                Mail::to($email)->send(new DemoEmail($mail,$mail));
-    }
 
 
     public function runAlarma(){

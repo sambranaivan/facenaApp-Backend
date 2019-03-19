@@ -47,6 +47,7 @@ return array(
     'App\\User' => $baseDir . '/app/User.php',
     'App\\alerta' => $baseDir . '/app/alerta.php',
     'App\\configuracion' => $baseDir . '/app/Configuracion.php',
+    'App\\hash' => $baseDir . '/app/hash.php',
     'App\\registro' => $baseDir . '/app/Registro.php',
     'App\\subcription' => $baseDir . '/app/subcription.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
