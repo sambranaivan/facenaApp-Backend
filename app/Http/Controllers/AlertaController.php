@@ -103,7 +103,7 @@ class AlertaController extends Controller
                                         'codigo_asunto'=>$data->asunto
                                         ]]);
 
-                // $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', $DATA);
+                $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', $DATA);
                 $notification = new Notification();
                 $notification->user_id = $u->id;
                 $notification->token = $u->token;
