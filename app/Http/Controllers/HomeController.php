@@ -37,7 +37,7 @@ class HomeController extends Controller
  */
     $number = 0;
     $stack = [];
-    for($j=0;$j<100000;$j++)
+    for($j=0;$j<10000;$j++)
     {
 
          $numero = '09-2019-';
