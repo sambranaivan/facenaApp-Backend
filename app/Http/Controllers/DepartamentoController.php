@@ -59,7 +59,7 @@ class DepartamentoController extends Controller
         $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso like "%0000-00-00%"
+                                                        where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                             and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$departamento_id.'

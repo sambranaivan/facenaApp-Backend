@@ -8,7 +8,7 @@ use App\Expediente;
 use App\subcription;
 
 use App\User;
-
+use App\Notification;
 use App\Asunto;
 use GuzzleHttp\Client;
 use DB;
@@ -33,12 +33,12 @@ class AlertaController extends Controller
      */
 
      public function checkUpdate(){
-
+        echo 'Check Update';
         $config = Configuracion::first();
         $last_id = $config->last_id;
 
         $expedientes = expediente::where('registro','>',$last_id)->get();
-
+        echo $expedientes->count();
         foreach ($expedientes as $exp)
         {
                 // ya tengo el expediente ahora busco si
@@ -55,7 +55,7 @@ class AlertaController extends Controller
                         echo 'Token OK....enviando notificacion</br>';
                         echo $exp->detalle_asunto.'</br>';
                         echo $exp->getAsunto->descripcion;
-                        $this->sendNotificacion($u->token,'Nuevo Expediente '.$exp->numero,$exp->getAsunto->descripcion."-".$exp->detalle_asunto,$exp);
+                        $this->sendNotificacion($u,'Nuevo Expediente '.$exp->numero,$exp->getAsunto->descripcion."-".$exp->detalle_asunto,$exp);
                     }
 
                 }
@@ -63,17 +63,18 @@ class AlertaController extends Controller
         $config->last_id = $exp->registro;
         }
         $config->save();
+        ////tengo que guarda la notificacion enviada
 
      }
 
-      public function sendNotificacion($token,$titulo,$mensaje,$data)
+      public function sendNotificacion($u,$titulo,$mensaje,$data)
         {
             $client = new Client();
-
-                $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
+          
+            $DATA   = [
                 'form_params' =>
                 [
-                    'to'=> $token, //User->getToken();
+                    'to'=> $u->token, //User->getToken();
                     "title"=>$titulo,
                     "channelId"=> 'notif',
                     "body"=>$mensaje,
@@ -91,9 +92,25 @@ class AlertaController extends Controller
                             ],
 
 
-                ]]);
-                    echo 'notificacion enviada</br>';
-                            return true;
+                ]];
+
+                $mensaje = json_encode(['asunto'=>$data->getAsunto->descripcion,
+                        'expediente'=>[ 'iniciador' => $data->detalle_iniciador,
+                                        'numero' => $data->numero,
+                                        'fecha' => $data->fecha,
+                                        // 'operador'=> $data->operador,
+                                        'detalle_asunto'=>$data->detalle_asunto,
+                                        'codigo_asunto'=>$data->asunto
+                                        ]]);
+
+                // $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', $DATA);
+                $notification = new Notification();
+                $notification->user_id = $u->id;
+                $notification->token = $u->token;
+                $notification->mensaje = $mensaje;
+                $notification->save();
+                echo '('.$data->asunto.')Notificacion enviada a'.$u->name.'</br>';
+                return true;
 
         }
 

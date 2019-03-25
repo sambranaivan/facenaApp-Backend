@@ -57,6 +57,7 @@ Route::get('/', function(){
 
 ///probar notificacion
 Route::get('/test','AsuntoController@sendNotificacion');
+Route::get('/test/notification','NotificationController@getNotifications');
 
 Route::get('/expediente/{hash}','ExpedienteController@verExpediente')->name('verExpediente');
 Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name('buscarExpediente');
@@ -72,11 +73,11 @@ Route::get('testmail','AlarmaController@probarMail');
 Route::get('/registros','RegistroController@test');
 
 
-Route::get('/etiquetas',function(){
-    return view('barcode');
-})->name('etiquetas');
+// Route::get('/etiquetas',function(){
+//     return view('barcode');
+// })->name('etiquetas');
 
-Route::post('/etiquetas','HomeController@print')->name('barcode');
+// Route::post('/etiquetas','HomeController@print')->name('barcode');
 
 
 Route::get('random','HomeController@fillBarcode');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Configuracion;
+use App\Notification;
 use App\subcription;
 use App\Asunto;
 use GuzzleHttp\Client;
@@ -71,6 +72,9 @@ class AsuntoController extends Controller
     }
 
 
+/**
+* Notificacion de prueba
+*/
     public function sendNotificacion()
     {
         $client = new Client();
@@ -83,7 +87,24 @@ class AsuntoController extends Controller
                 "body"=>"cuerpo",
                 "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
             ]);
-	echo "Enviado Ok";
+
+            $data = [
+            'form_params' =>
+            [
+                'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
+                "title"=>"titulo",
+                "body"=>"cuerpo",
+                "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
+            ];
+            // header('Content-Type: application/json');
+            // echo json_encode($data);
+            $notification = new Notification();
+            $notification->user_id = 1;
+            $notification->token = 'token test';
+            $notification->mensaje = json_encode($data);
+            $notification->save();
+
+	// echo "Enviado Ok";
     }
 
 
