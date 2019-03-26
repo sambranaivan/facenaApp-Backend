@@ -148,13 +148,16 @@ public function borrarAlerta($departamento_id){
 
     public function runAlarma(){
         $c = Configuracion::first();
+        echo "Buscando Alarmas de Tipo: Pases EN DEPARTAMENTO</br>";
         ////obtengo todas las alarmas
         $alarmas = Alarma::where('tipo',2)->get();///alerta por pase en departameto
         // en el !XX-XX-XXXX y 00-00-00
-
+        echo "Buscando Alarmas para ".sizeof($alarmas)." Departamentos";
         foreach ($alarmas as $alarma)
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
-
+            echo "</br>";
+            echo "Buscando Pases para ".$alarma->departamento;
+            echo "</br>";
             // busco todos los pases en (x-O) del departamento de la alarma
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
@@ -167,7 +170,9 @@ public function borrarAlerta($departamento_id){
                                                         limit 0,100');
 
             $pases = Pase::hydrate($results);//convierto registro en objeto
-
+            echo "Se Encontraron".sizeof($results)." Pases para ".$alarma->departamento;
+            echo "</br>";
+            return;
 
             $reporte = [];//creo array por departamento
             $reporte_escalar = [];//creo array por departamento
