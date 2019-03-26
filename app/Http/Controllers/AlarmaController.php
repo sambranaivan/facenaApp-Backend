@@ -172,7 +172,7 @@ public function borrarAlerta($departamento_id){
             $pases = Pase::hydrate($results);//convierto registro en objeto
             echo "Se Encontraron".sizeof($results)." Pases para ".$alarma->departamento;
             echo "</br>";
-            return;
+            // return;
 
             $reporte = [];//creo array por departamento
             $reporte_escalar = [];//creo array por departamento
@@ -198,10 +198,9 @@ public function borrarAlerta($departamento_id){
                         $pase->alarma = $alarma;
                         $reporte_escalar[] = $pase;
                     }
-
-
                     $reporte[] = $pase;
-            }
+            }///bucle foreach pase
+            ///return $reporte y $reporte_escalar
 
                 //enviar mail normal
                 $email = $alarma->email;
@@ -239,16 +238,12 @@ public function borrarAlerta($departamento_id){
                 }
 
 
-                ///enviar amil escalar
 
-
-
-
-            return '</br>Listo';
         }
 
 
         ///todos los resultados armos el mail
+        return "listo";
     }
 
 
