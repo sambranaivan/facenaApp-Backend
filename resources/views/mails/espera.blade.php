@@ -27,7 +27,7 @@
                 @elseif($item->color == 'white')
                 style="background-color: white; text-aling:center;  border: 1px solid black;"
                 @endif
-                    ><strong>{{$item->color}}{{$item->diff}}</strong> Días</td>
+                    ><strong>{{$item->diff}}</strong> Días</td>
                     <td scope="row" style="  border: 1px solid black;">{{$item->origen->codigo}} - {{$item->origen->descripcion}}</td>
                 </tr>
 

@@ -276,19 +276,21 @@ public function borrarAlerta($departamento_id){
             // obtengo todos los pases y calculo el color segun la alarma
             foreach ($pases as $pase)///por cada pase que encuentro le pongo color
             {
+
                     if($pase->diff < $alarma->amarrillo)
                     {
                         $color = 'white';
+                        echo ' blanco!!</br>';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
                     }
-                    elseif ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
+                    if ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
                     {
                         $color = 'yellow';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
                     }
-                    else
+                     if($pase->diff >= $alarma->rojo)
                     {
                         $color = 'red';
                         $pase->color = $color;
