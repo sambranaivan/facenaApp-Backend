@@ -204,8 +204,9 @@ public function borrarAlerta($departamento_id){
 
                 $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
                 'Reply-To: webmaster@example.com' . "\r\n" .
+                'Content-Type: text/html; charset=UTF-8'. "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
-                $cabeceras.= "Content-Type: text/html; charset=UTF-8\r\n";
+
 
                 ///envio mail normal
                 $mensaje = view('mails.demo')->with('demo',$reporte)->render();
