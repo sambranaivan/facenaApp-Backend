@@ -155,11 +155,11 @@ public function borrarAlerta($departamento_id){
         foreach ($alarmas as $alarma)
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
 
-            // busco todos los pases del (XO) departamento de la alarma
+            // busco todos los pases en espera (O-O) del departamento de la alarma
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$alarma->departamento.'
@@ -205,6 +205,7 @@ public function borrarAlerta($departamento_id){
                 $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
                 'Reply-To: webmaster@example.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
+                $cabeceras.= "Content-Type: text/html; charset=UTF-8\r\n";
 
                 ///envio mail normal
                 $mensaje = view('mails.demo')->with('demo',$reporte)->render();
@@ -214,6 +215,7 @@ public function borrarAlerta($departamento_id){
                 mail($escalar, $titulo, $mensaje, $cabeceras);
 
             echo "Email Enviado a ".$email." escalar a ".$escalar;
+            return 0;
         }
 
 
