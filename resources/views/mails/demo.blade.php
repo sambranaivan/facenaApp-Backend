@@ -24,7 +24,7 @@
                 style="background-color: red; color:white; text-aling:center;  border: 1px solid black;"
                 @elseif($item->color == 'yellow')
                 style="background-color: yellow; text-aling:center;  border: 1px solid black;"
-                @else
+                @elseif($item->color == 'white')
                 style="background-color: white; text-aling:center;  border: 1px solid black;"
                 @endif
                     ><strong>{{$item->diff}}</strong></td>
