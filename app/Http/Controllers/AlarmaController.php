@@ -348,10 +348,10 @@ public function borrarAlerta($departamento_id){
     public function probarMail()
     {
 
-        $para      = 'emanuelirrazabal@gmail.com,sambranaivan@gmail.com';
-        $titulo    = 'El título';
-        $mensaje   = 'Hola';
-        $cabeceras = 'From: subsecretaria@exa.unne.edu.ar' . "\r\n" .
+        $para      = 'dustingassmann@gmail.com ,sambranaivan@gmail.com,juampy.vallejo@gmail.com,pereiramatin@gmail.com,alonso.651@gmail.com';
+        $titulo    = 'Todos aprueban por decreto';
+        $mensaje   = 'Titulos para todos';
+        $cabeceras = 'From: sambrana@exa.unne.edu.ar' . "\r\n" .
                     'Reply-To: webmaster@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
