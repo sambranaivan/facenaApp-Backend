@@ -165,7 +165,9 @@ public function borrarAlerta($departamento_id){
                                                         and codigo_destino ='.$alarma->departamento.'
                                                         order by diff desc, registro desc
                                                         limit 0,100');
+
             $pases = Pase::hydrate($results);//convierto registro en objeto
+
 
             $reporte = [];//creo array por departamento
             $reporte_escalar = [];//creo array por departamento
@@ -209,14 +211,35 @@ public function borrarAlerta($departamento_id){
 
 
                 ///envio mail normal
+                if(sizeof($reporte))
+                {
                 $mensaje = view('mails.demo')->with('demo',$reporte)->render();
                 mail($email, $titulo, $mensaje, $cabeceras);
-                ///enviar amil escalar
-                $mensaje = view('mails.demo')->with('demo',$reporte_escalar)->render();
-                mail($escalar, $titulo, $mensaje, $cabeceras);
+                echo "Email Enviado a ".$email." con ".sizeof($reporte).' Registros </br>';
+                }
+                else
+                {
+                    echo 'no hay pases que reportar para';
 
-            echo "Email Enviado a ".$email." escalar a ".$escalar;
-            return 0;
+                }
+                if(sizeof($reporte_escalar))
+                {
+                    $mensaje = view('mails.demo')->with('demo',$reporte_escalar)->render();
+                mail($escalar, $titulo, $mensaje, $cabeceras);
+                echo "Email Enviado a ".$escalar." con ".sizeof($reporte_escalar).' Registros </br>';
+                }
+                else
+                {
+                    echo 'Escalar no hay pases que reportar para';
+                }
+
+
+                ///enviar amil escalar
+
+
+
+
+            return '</br>Listo';
         }
 
 
