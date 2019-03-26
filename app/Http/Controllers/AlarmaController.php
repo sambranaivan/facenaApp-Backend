@@ -280,7 +280,7 @@ public function borrarAlerta($departamento_id){
                     if($pase->diff < $alarma->amarrillo)
                     {
                         $color = 'white';
-                        echo ' blanco!!</br>';
+                        // echo ' blanco!!</br>';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
                     }

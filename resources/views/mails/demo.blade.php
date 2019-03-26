@@ -21,13 +21,13 @@
                     <td scope="row" style="  border: 1px solid black;">{{$item->getExpediente->detalle_asunto}}</td>
                     <td scope="row"
                     @if($item->color == 'red')
-                style="background-color: red; color:white; text-aling:center;  border: 1px solid black;"
+                style="background-color: red; color:white;text-aling:center;border: 1px solid black;"
                 @elseif($item->color == 'yellow')
-                style="background-color: yellow; text-aling:center;  border: 1px solid black;"
+                style="background-color: yellow;text-aling:center;border: 1px solid black;"
                 @elseif($item->color == 'white')
-                style="background-color: white; text-aling:center;  border: 1px solid black;"
+                style="background-color: white;text-aling:center;border: 1px solid black;"
                 @endif
-                    ><strong>{{$item->diff}}</strong></td>
+                    ><strong>{{$item->diff}}</strong> Días</td>
                     <td scope="row" style="  border: 1px solid black;">{{$item->origen->codigo}} - {{$item->origen->descripcion}}</td>
                 </tr>
 
