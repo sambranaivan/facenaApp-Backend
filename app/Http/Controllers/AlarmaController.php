@@ -149,17 +149,17 @@ public function borrarAlerta($departamento_id){
     public function runAlarma(){
         $c = Configuracion::first();
         ////obtengo todas las alarmas
-        $alarmas = Alarma::where('tipo',1)->get();///alerta por pase en espera
-        // en el 00-00-00 y 00-00-00
+        $alarmas = Alarma::where('tipo',2)->get();///alerta por pase en departameto
+        // en el !XX-XX-XXXX y 00-00-00
 
         foreach ($alarmas as $alarma)
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
 
-            // busco todos los pases en espera (O-O) del departamento de la alarma
+            // busco todos los pases en (x-O) del departamento de la alarma
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso like "%0000-00-00%"
+                                                        where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$alarma->departamento.'

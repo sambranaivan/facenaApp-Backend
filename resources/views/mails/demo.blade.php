@@ -17,8 +17,8 @@
 
                 <tr>
                     <td scope="row" style="  border: 1px solid black;">{{$item->numero}}</td>
-                    <td scope="row" style="  border: 1px solid black;">{{$item->getExpediente->detalle_asunto}}</td>
                     <td scope="row" style="  border: 1px solid black;">{{$item->fecha_ingreso}}</td>
+                    <td scope="row" style="  border: 1px solid black;">{{$item->getExpediente->detalle_asunto}}</td>
                     <td scope="row"
                     @if($item->color == 'red')
                 style="background-color: red; color:white; text-aling:center;  border: 1px solid black;"
