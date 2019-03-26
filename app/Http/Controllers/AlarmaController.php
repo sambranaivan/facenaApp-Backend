@@ -117,16 +117,16 @@ class AlarmaController extends Controller
         return view('listadoAlertas')->with('departamentos',$d);
     }
 
-public function send()
-        {
-        $objDemo = new \stdClass();
-        $objDemo->demo_one = 'Demo One Value';
-        $objDemo->demo_two = 'Demo Two Value';
-        $objDemo->sender = 'SenderUserName';
-        $objDemo->receiver = 'ReceiverUserName';
+// public function send()
+//         {
+//         $objDemo = new \stdClass();
+//         $objDemo->demo_one = 'Demo One Value';
+//         $objDemo->demo_two = 'Demo Two Value';
+//         $objDemo->sender = 'SenderUserName';
+//         $objDemo->receiver = 'ReceiverUserName';
 
-        Mail::to("sambranaivan@gmail.com")->send(new DemoEmail($objDemo));
-        }
+//         Mail::to("sambranaivan@gmail.com")->send(new DemoEmail($objDemo));
+//         }
 
 public function borrarAlerta($departamento_id){
 
@@ -140,6 +140,11 @@ public function borrarAlerta($departamento_id){
     }
 
 
+    /**
+     * FUNCION PRINCIPAL DE ENVIO DE MAILS
+     *
+     *
+     */
 
     public function runAlarma(){
         $c = Configuracion::first();
@@ -150,11 +155,11 @@ public function borrarAlerta($departamento_id){
         foreach ($alarmas as $alarma)
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
 
-            // busco todos los pases del departamento de la alarma
+            // busco todos los pases del (XO) departamento de la alarma
             $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
                                                     FROM `EXP_PASE`
-                                                        where fecha_ingreso like "%0000-00-00%"
+                                                        where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$alarma->departamento.'
@@ -191,27 +196,24 @@ public function borrarAlerta($departamento_id){
                     $reporte[] = $pase;
             }
 
+                //enviar mail normal
                 $email = $alarma->email;
                 $escalar = $alarma->escalar;
-                $mail = new \stdClass();
-                $mail->subject = 'Expedientes Facena - Reporte Semanal';
-                $mail->tipo = 1;
-                $mail->escalar = false;
-                Mail::to($email)->send(new DemoEmail($reporte,$mail));
 
+                $titulo    = 'Expedientes Facena - Reporte Semanal';
 
-                ///escalar email
-                $mail = new \stdClass();
-                $mail->subject = 'Expedientes Facena - Reporte Semanal - Escalar';
-                $mail->tipo = 1;
-                $mail->escalar = true;
-                Mail::to('ivanss.s91@gmail.com')->send(new DemoEmail($reporte_escalar,$mail));
+                $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
+                'Reply-To: webmaster@example.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
 
+                ///envio mail normal
+                $mensaje = view('mails.demo')->with('demo',$reporte)->render();
+                mail($email, $titulo, $mensaje, $cabeceras);
+                ///enviar amil escalar
+                $mensaje = view('mails.demo')->with('demo',$reporte_escalar)->render();
+                mail($escalar, $titulo, $mensaje, $cabeceras);
 
-
-
-
-
+            echo "Email Enviado a ".$email." escalar a ".$escalar;
         }
 
 
