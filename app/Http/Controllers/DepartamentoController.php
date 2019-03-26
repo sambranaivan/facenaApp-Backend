@@ -61,7 +61,7 @@ class DepartamentoController extends Controller
                                                     FROM `EXP_PASE`
                                                         where fecha_ingreso not like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
-                                                        and fecha like "%'.$c->filtrofecha.'%"
+                                                            and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$departamento_id.'
 
                                                         order by registro desc
