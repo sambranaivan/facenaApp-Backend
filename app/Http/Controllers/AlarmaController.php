@@ -241,6 +241,102 @@ public function borrarAlerta($departamento_id){
 
         }
 
+        /**
+         * bloque de expedientes en expera
+         */
+        // $c = Configuracion::first();
+        echo "Buscando Alarmas de Tipo: EN ESPERA DE SER TOMADOS</br>";
+        ////obtengo todas las alarmas
+        $alarmas = Alarma::where('tipo',1)->get();///alerta por pase en departameto
+        // en el !XX-XX-XXXX y 00-00-00
+        echo "Buscando Alarmas para ".sizeof($alarmas)." Departamentos";
+        foreach ($alarmas as $alarma)
+        {///por cada alarma osea aca tengo un deparamento nomas por alarma
+            echo "</br>";
+            echo "Buscando Pases para ".$alarma->departamento;
+            echo "</br>";
+            // busco todos los pases en (x-O) del departamento de la alarma
+            $results = DB::connection('mysql2')->select('SELECT *,
+                                                    DATEDIFF(NOW(),fecha) as diff
+                                                    FROM `EXP_PASE`
+                                                        where fecha_ingreso like "%0000-00-00%"
+                                                        and fecha_salida like "%0000-00-00%"
+                                                        and fecha like "%'.$c->filtrofecha.'%"
+                                                        and codigo_destino ='.$alarma->departamento.'
+                                                        order by diff desc, registro desc
+                                                        limit 0,100');
+
+            $pases = Pase::hydrate($results);//convierto registro en objeto
+            echo "Se Encontraron".sizeof($results)." Pases para ".$alarma->departamento;
+            echo "</br>";
+            // return;
+
+            $reporte = [];//creo array por departamento
+            $reporte_escalar = [];//creo array por departamento
+            // obtengo todos los pases y calculo el color segun la alarma
+            foreach ($pases as $pase)///por cada pase que encuentro le pongo color
+            {
+                    if($pase->diff< $alarma->amarrillo)
+                    {
+                        $color = 'white';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                    }
+                    elseif ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
+                    {
+                        $color = 'yellow';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                    }
+                    else
+                    {
+                        $color = 'red';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma;
+                        $reporte_escalar[] = $pase;
+                    }
+                    $reporte[] = $pase;
+            }///bucle foreach pase
+            ///return $reporte y $reporte_escalar
+
+                //enviar mail normal
+                $email = $alarma->email;
+                $escalar = $alarma->escalar;
+
+                $titulo    = 'Expedientes Facena - Reporte Semanal de Pases';
+
+                $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
+                'Reply-To: webmaster@example.com' . "\r\n" .
+                'Content-Type: text/html; charset=UTF-8'. "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+
+
+                ///envio mail normal
+                if(sizeof($reporte))
+                {
+                $mensaje = view('mails.espera')->with('demo',$reporte)->render();
+                mail($email, $titulo, $mensaje, $cabeceras);
+                echo "Email Enviado a ".$email." con ".sizeof($reporte).' Registros </br>';
+                }
+                else
+                {
+                    echo 'no hay pases que reportar para';
+
+                }
+                if(sizeof($reporte_escalar))
+                {
+                    $mensaje = view('mails.espera')->with('demo',$reporte_escalar)->render();
+                mail($escalar, $titulo, $mensaje, $cabeceras);
+                echo "Email Enviado a ".$escalar." con ".sizeof($reporte_escalar).' Registros </br>';
+                }
+                else
+                {
+                    echo 'Escalar no hay pases que reportar para';
+                }
+
+
+
+        }
 
         ///todos los resultados armos el mail
         return "listo";
