@@ -11,13 +11,14 @@
                     <table class="table">
                         <tr>
                             <th>Exp. Numero</th>
-                            <th>Fecha</th>
+                            <th>Fecha de Ingreso</th>
                             <th>Origen</th>
                         </tr>
                     @foreach ($pases as $pase)
                         <tr>
                         <td>{{$pase->numero}}</td>
-                        <td>{{$pase->fecha}}</td>
+                        <td>{{$pase->fecha_ingreso}}</td>
+
                         {{-- <td>{{$pase->diff}}</td> --}}
                         <td>
                             @isset($pase->destino)
