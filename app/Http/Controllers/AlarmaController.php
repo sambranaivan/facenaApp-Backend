@@ -163,11 +163,12 @@ public function borrarAlerta($departamento_id){
                                                         and fecha_salida like "%0000-00-00%"
                                                         and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$alarma->departamento.'
-                                                        order by diff desc, registro desc
+                                                        registro desc
                                                         limit 0,100');
 
             $pases = Pase::hydrate($results);//convierto registro en objeto
-
+            echo sizeof($pases);
+            return;
 
             $reporte = [];//creo array por departamento
             $reporte_escalar = [];//creo array por departamento
