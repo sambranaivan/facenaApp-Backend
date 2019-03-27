@@ -60,6 +60,9 @@ Route::get('/test','AsuntoController@sendNotificacion');
 Route::get('/test/notification','NotificationController@getNotifications');
 
 Route::get('/expediente/{hash}','ExpedienteController@verExpediente')->name('verExpediente');
+Route::get('/expediente',function(){
+return view('expediente_error');
+});
 Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name('buscarExpediente');
 
 
