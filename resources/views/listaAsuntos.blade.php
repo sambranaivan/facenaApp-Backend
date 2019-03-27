@@ -124,7 +124,9 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Descripcion</th>
-                    <th>Noticaciones</th>
+                    <th>Noticaciones
+
+                    </th>
                 </tr>
                     @foreach ($asuntos as $item)
                         <tr>

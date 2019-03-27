@@ -15,6 +15,37 @@ class AsuntoController extends Controller
 {
     //
 
+    public function activarTodos(){
+
+        $u = Auth::user();
+        $asuntos = Asunto::all();
+
+        foreach ($asuntos as $asunto)
+        {
+                $count = subcription::where(['asunto_id'=>$request->asunto,'user_id'=>Auth::user()->id])->count();
+                if(!$count)
+                {
+                         $subs = new subcription();
+                }
+                else
+                {
+                        $subs = subcription::where(['asunto_id'=>$request->asunto,'user_id'=>Auth::user()->id])->first();
+                }
+
+
+                $subs->user_id = Auth::user()->id;
+                $subs->asunto_id = $request->asunto;
+                $subs->estado = true;
+                $subs->save();
+        }
+
+        return redirect()->route('notificaciones_todos');
+    }
+
+    public function activarTodosFiltro(){
+
+    }
+
 
     public function subscribe(Request $request)
     {
@@ -50,8 +81,6 @@ class AsuntoController extends Controller
 
         $asuntos = Asunto::all();
 
-
-
         $subs = subcription::where(['user_id'=>Auth::user()->id,'estado'=>true])->get();
 
         $clave = rand(1000,9999);
@@ -67,7 +96,6 @@ class AsuntoController extends Controller
 
         // print_r($asuntos);
         return view('listaAsuntos')->with('asuntos',$asuntos)->with('subs',$subs)->with('clave',$u->clave)->with('filtro',false);;
-
 
     }
 

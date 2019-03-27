@@ -1,0 +1,7 @@
+<!--   Seguimiento de expedientes   -->
+
+<div class="encabezadodep" align="center"><strong>Seguimiento de</strong></div>
+<div class="encabezadodep" align="center"><strong>Expedientes</strong></div>
+<iframe id="NewsWindow" seamless="" src="../alertafacena/public/widget" width="97%" height="120" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" style="display: block; margin: 0 auto; padding: 0; border: #000000 2px solid;"></iframe>
+   
+<!--   //Seguimiento de expedientes   -->
