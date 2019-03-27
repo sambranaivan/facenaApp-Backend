@@ -87,3 +87,6 @@ Route::get('random','HomeController@fillBarcode');
 Route::get('widget',function(){
     return view("widget");
 });
+Route::get('widget2',function(){
+    return view("widget2");
+});

@@ -33,29 +33,26 @@
 </head>
 <body>
     <div id="app">
-
+        <main class="py-4">
 <div class="container-fluid">
-   <div class="row" style="padding-top: 5px;">
-    <div class="col-md-12">
-    <img src="{{asset('img/buscador.png')}}" class="img-fluid" alt="">
-    </div>
-    <div class="col-md-12">
-        <div class="form-inline ">
-                              {{-- <div class="form-group text-center" > --}}
+    <div class="row justify-content-center">
+
+
+                    <div class="col-md-12" style="font-size: 0.9em">
+                          <div class="form-inline">
+                              <div class="form-group text-center" >
                                   {{-- <label for="hash">Código de Seguimiento: </label> --}}
-                                  <input style="font-size: 0.9em; width:110px;" type="text" name="hash" id="hash" class="form-control form-control-sm" placeholder="Codigo de Seguimiento" aria-describedby="helpId" required>
+                                  <input style="font-size: 0.9em" type="text" name="hash" id="hash" class="form-control" placeholder="Codigo de Seguimiento" aria-describedby="helpId" required>
                                   {{-- <small id="helpId" class="text-muted">Help text</small> --}}
-                                  <button id="buscar" type="submit" class="btn btn-primary btn-sm">
-                                      <i class="fa fa-search" aria-hidden="true"></i>
-                                  </button>
-                              {{-- </div> --}}
+                                  <button id="buscar" type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                              </div>
                             </div>
-    </div>
-   </div>
-</div>
+
+                        </div>
+</div></div>
 
 
-
+        </main>
     </div>
 </body>
 </html>
