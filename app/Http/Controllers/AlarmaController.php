@@ -483,8 +483,10 @@ public function borrarAlerta($departamento_id){
 
             $mensaje = view('mails.mail')->with('espera',$reporte_en_espera)->with('en_dpto',$reporte_en_dpto)->with('dpto',$dpto)->render();
             mail($email, $titulo, $mensaje, $cabeceras);
+            echo "email enviado a ".$email.'</br>';
             $mensaje = view('mails.mail')->with('espera',$reporte_en_espera_escalar)->with('en_dpto',$reporte_en_dpto_escalar)->with('dpto',$dpto)->render();
             mail($escalar, $titulo, $mensaje, $cabeceras);
+            echo "email enviado  a ".$escalar.'</br>';
             // echo $mensaje;
 
 
