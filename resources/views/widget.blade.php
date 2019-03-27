@@ -23,10 +23,10 @@
     <script>
     $(document).ready(function(){
 
-
-       $("#volver").click(function(){
-           window.close();
-           window.history.back();
+       $("#buscar").click(function(){
+            window.open("http://localhost/facena/expediente/"+$("#hash").val(),
+        "Expediente",
+        "toolbar=no,scrollbars=no,menubar=no,resizable=no,top=auto,location=no,left=auto,width=500,height=300");
        })
     })
     </script>
@@ -36,36 +36,23 @@
         <main class="py-4">
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-            <div class="card-header">
-                <p>Expediente:<strong> N° {{$expediente->numero}}</strong></p>
-            </div>
-                <div class="card-body">
-                    <p>
-                        <strong>
-                    {{$expediente->detalle_asunto}}
-                    {{-- {{$expediente->hash()}} --}}
-                    </p></strong>
-                    <?php $item = $expediente->getPases->reverse()->first() ;?>
-                    <p>en <strong>{{$item->destino}}</strong> desde el <strong>{{$item->fecha}}</strong></p>
-                    <div class="text-center">
-                            <a name="" id="volver" class="btn btn-primary" href="#" role="button">Volver</a>
+
+
+                    <div class="col-md-12" style="font-size: 0.9em">
+                          <div class="form-inline">
+                              <div class="form-group text-center" >
+                                  {{-- <label for="hash">Código de Seguimiento: </label> --}}
+                                  <input style="font-size: 0.9em" type="text" name="hash" id="hash" class="form-control" placeholder="Codigo de Seguimiento" aria-describedby="helpId" required>
+                                  {{-- <small id="helpId" class="text-muted">Help text</small> --}}
+                                  <button id="buscar" type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                              </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+</div></div>
 
 
         </main>
     </div>
 </body>
 </html>
-

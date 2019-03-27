@@ -23,7 +23,6 @@
     <script>
     $(document).ready(function(){
 
-
        $("#volver").click(function(){
            window.close();
            window.history.back();
@@ -38,25 +37,11 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">
-                <p>Expediente:<strong> N° {{$expediente->numero}}</strong></p>
+            <div class="card-header text-center">
+                <h3>Expediente no Encontrado</h3>
             </div>
-                <div class="card-body">
-                    <p>
-                        <strong>
-                    {{$expediente->detalle_asunto}}
-                    {{-- {{$expediente->hash()}} --}}
-                    </p></strong>
-                    <?php $item = $expediente->getPases->reverse()->first() ;?>
-                    <p>en <strong>{{$item->destino}}</strong> desde el <strong>{{$item->fecha}}</strong></p>
-                    <div class="text-center">
-                            <a name="" id="volver" class="btn btn-primary" href="#" role="button">Volver</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
+            <div class="card-body text-center">
+                <a name="" id="volver" class="btn btn-primary" href="#" role="button">Volver</a>
             </div>
         </div>
     </div>

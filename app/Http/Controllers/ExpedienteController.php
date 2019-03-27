@@ -15,11 +15,16 @@ class ExpedienteController extends Controller
         ///hash reverse
         if(!$hash)
         {
-            return view('buscar_expediente')->with('error',true);
+            return view('expediente_error')->with('error',true);
         }
 
-        $hash = Hash::where('hash',$hash)->first();
+        $hash = strtoupper($hash);
 
+        $hash = Hash::where('hash',$hash)->first();
+          if(!$hash)
+        {
+            return view('expediente_error')->with('error',true);
+        }
          $e = $hash->expediente;
 
          if($e)
