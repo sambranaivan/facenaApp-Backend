@@ -43,7 +43,7 @@
         <div class="form-inline ">
                               {{-- <div class="form-group text-center" > --}}
                                   {{-- <label for="hash">Código de Seguimiento: </label> --}}
-                                  <input style="font-size: 0.9em; width:110px;" type="text" name="hash" id="hash" class="form-control form-control-sm" placeholder="Codigo de Seguimiento" aria-describedby="helpId" required>
+                                  <input style="font-size: 0.9em; width:110px;" type="text" name="hash" id="hash" class="form-control form-control-sm" placeholder="Código" aria-describedby="helpId" required>
                                   {{-- <small id="helpId" class="text-muted">Help text</small> --}}
                                   <button id="buscar" type="submit" class="btn btn-primary btn-sm">
                                       <i class="fa fa-search" aria-hidden="true"></i>
