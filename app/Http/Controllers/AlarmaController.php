@@ -153,7 +153,7 @@ public function borrarAlerta($departamento_id){
         $alarmas = Alarma::where('tipo',2)->get();///alerta por pase en departameto
         // en el !XX-XX-XXXX y 00-00-00
         echo "Buscando Alarmas para ".sizeof($alarmas)." Departamentos";
-        foreach ($alarmas as $alarma)
+        foreach ($alarmas as $alarma)///aca deberia ser por departameto
         {///por cada alarma osea aca tengo un deparamento nomas por alarma
             echo "</br>";
             echo "Buscando Pases para ".$alarma->departamento;
@@ -179,17 +179,19 @@ public function borrarAlerta($departamento_id){
             // obtengo todos los pases y calculo el color segun la alarma
             foreach ($pases as $pase)///por cada pase que encuentro le pongo color
             {
-                    if($pase->diff< $alarma->amarrillo)
-                    {
-                        $color = 'white';
-                        $pase->color = $color;
-                        $pase->alarma = $alarma;
-                    }
-                    elseif ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
+                    // if($pase->diff< $alarma->amarrillo)
+                    // {
+                    //     $color = 'white';
+                    //     $pase->color = $color;
+                    //     $pase->alarma = $alarma;
+                    // }
+                    // else
+                    if ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
                     {
                         $color = 'yellow';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
+                        $reporte[] = $pase;
                     }
                     else
                     {
@@ -197,8 +199,9 @@ public function borrarAlerta($departamento_id){
                         $pase->color = $color;
                         $pase->alarma = $alarma;
                         $reporte_escalar[] = $pase;
+                        $reporte[] = $pase;
                     }
-                    $reporte[] = $pase;
+
             }///bucle foreach pase
             ///return $reporte y $reporte_escalar
 
@@ -277,27 +280,29 @@ public function borrarAlerta($departamento_id){
             foreach ($pases as $pase)///por cada pase que encuentro le pongo color
             {
 
-                    if($pase->diff < $alarma->amarrillo)
-                    {
-                        $color = 'white';
-                        // echo ' blanco!!</br>';
-                        $pase->color = $color;
-                        $pase->alarma = $alarma;
-                    }
+                    // if($pase->diff < $alarma->amarrillo)
+                    // {
+                    //     $color = 'white';
+                    //     // echo ' blanco!!</br>';
+                    //     $pase->color = $color;
+                    //     $pase->alarma = $alarma;
+                    // }
                     if ($pase->diff >= $alarma->amarillo & $pase->diff < $alarma->rojo)
                     {
                         $color = 'yellow';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
+                        $reporte[] = $pase;
                     }
                      if($pase->diff >= $alarma->rojo)
                     {
                         $color = 'red';
                         $pase->color = $color;
                         $pase->alarma = $alarma;
+                        $reporte[] = $pase;
                         $reporte_escalar[] = $pase;
                     }
-                    $reporte[] = $pase;
+
             }///bucle foreach pase
             ///return $reporte y $reporte_escalar
 
@@ -336,8 +341,6 @@ public function borrarAlerta($departamento_id){
                     echo 'Escalar no hay pases que reportar para';
                 }
 
-
-
         }
 
         ///todos los resultados armos el mail
@@ -356,6 +359,147 @@ public function borrarAlerta($departamento_id){
             'X-Mailer: PHP/' . phpversion();
 
         mail($para, $titulo, $mensaje, $cabeceras);
+
+
+    }
+
+
+    public function semanal(){
+        $c = Configuracion::first();
+
+        $dptos = Departamento::all();
+        /// $deptos con alarmas
+        $all = DB::connection('mysql')->select("SELECT DISTINCT departamento from alarmas");
+
+        $dptos = [];
+        foreach ($all as $d_id)
+        {
+            $dptos[] = Departamento::find($d_id->departamento);
+        }
+        // print_r($dptos);
+
+        // return ;
+
+        foreach ($dptos as $dpto)
+        {
+            ///por cada depto
+            ///alarma
+            $alarma_en_espera = Alarma::where('tipo',1)->where('departamento',$dpto->codigo)->first();
+            $alarma_en_dpto = Alarma::where('tipo',2)->where('departamento',$dpto->codigo)->first();
+
+            ///existen las las alarmas=??
+
+            //alarma en espera
+            $results = DB::connection('mysql2')->select('SELECT *,
+                                                    DATEDIFF(NOW(),fecha) as diff
+                                                    FROM `EXP_PASE`
+                                                        where fecha_ingreso like "%0000-00-00%"
+                                                        and fecha_salida like "%0000-00-00%"
+                                                        and fecha like "%'.$c->filtrofecha.'%"
+                                                        and codigo_destino ='.$dpto->codigo.'
+                                                        order by diff desc, registro desc
+                                                        limit 0,100');
+
+            $pases_en_espera = Pase::hydrate($results);//convierto registro en objeto
+            echo "Se Encontraron".sizeof($results)." Pases para ".$dpto->descripcion;
+            echo "</br>";
+            $reporte_en_espera = [];
+            $reporte_en_espera_escalar = [];
+            foreach ($pases_en_espera as $pase)
+            {
+                  if ($pase->diff >= $alarma_en_espera->amarillo & $pase->diff < $alarma_en_espera->rojo)
+                    {
+                        $color = 'yellow';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma_en_espera;
+                        $reporte_en_espera[] = $pase;
+                    }
+                    else
+                    {
+                        $color = 'red';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma_en_espera;
+                        $reporte_en_espera[] = $pase;
+                        $reporte_en_espera_escalar[] = $pase;
+                    }
+            }
+            /**
+             * Pase en Departamento
+             */
+            $results = DB::connection('mysql2')->select('SELECT *,
+                                                    DATEDIFF(NOW(),fecha_ingreso) as diff
+                                                    FROM `EXP_PASE`
+                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        and fecha_salida like "%0000-00-00%"
+                                                        and fecha like "%'.$c->filtrofecha.'%"
+                                                        and codigo_destino ='.$dpto->codigo.'
+                                                        order by diff desc, registro desc
+                                                        limit 0,100');
+
+            $pases_en_dpto = Pase::hydrate($results);//convierto registro en objeto
+            echo "Se Encontraron".sizeof($results)." Pases en ".$dpto->descripcion;
+            echo "</br>";
+            $reporte_en_dpto = [];
+            $reporte_en_dpto_escalar = [];
+            foreach ($pases_en_dpto as $pase)
+            {
+                  if ($pase->diff >= $alarma_en_dpto->amarillo & $pase->diff < $alarma_en_dpto->rojo)
+                    {
+                        $color = 'yellow';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma_en_dpto;
+                        $reporte_en_dpto[] = $pase;
+                    }
+                    else
+                    {
+                        $color = 'red';
+                        $pase->color = $color;
+                        $pase->alarma = $alarma_en_dpto;
+                        $reporte_en_dpto[] = $pase;
+                        $reporte_en_dpto_escalar[] = $pase;
+                    }
+            }
+            ///En este punto tengo todo ya
+            /**
+              *   $reporte_en_dpto = [];
+              *   $reporte_en_dpto_escalar = [];
+              *   $reporte_en_espera = [];
+              *   $reporte_en_espera_escalar = [];
+              */
+
+            //El problema es que tengo dos mail pero bueno uso el del en espera
+            $email = $alarma_en_espera->email;
+            $escalar = $alarma_en_espera->escalar;
+            $titulo    = 'Expedientes Facena - Reporte Semanal';
+
+            $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
+            'Reply-To: webmaster@example.com' . "\r\n" .
+            'Content-Type: text/html; charset=UTF-8'. "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+            //armar el mensaje
+            //normal
+            ///envio mail normal
+
+            $mensaje = view('mails.mail')->with('espera',$reporte_en_espera)->with('en_dpto',$reporte_en_dpto)->with('dpto',$dpto)->render();
+            mail($email, $titulo, $mensaje, $cabeceras);
+            $mensaje = view('mails.mail')->with('espera',$reporte_en_espera_escalar)->with('en_dpto',$reporte_en_dpto_escalar)->with('dpto',$dpto)->render();
+            mail($escalar, $titulo, $mensaje, $cabeceras);
+            // echo $mensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
 
 
     }

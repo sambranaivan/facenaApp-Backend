@@ -70,6 +70,7 @@ Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name(
 Route::get('/checkupdate','AlertaController@checkUpdate');
 Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
 Route::get('testmail','AlarmaController@probarMail');
+Route::get('semanal','AlarmaController@semanal');
 
 
 ////parte de registros

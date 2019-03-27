@@ -8,7 +8,7 @@
             <th>Expediente</th>
             <th>Fecha Ingreso</th>
             <th>Asunto</th>
-            <th>Días</th>
+            <th>Hace</th>
             <th>Origen</th>
         </tr>
     </thead>
@@ -27,7 +27,7 @@
                 @elseif($item->color == 'white')
                 style="background-color: white;text-aling:center;border: 1px solid black;"
                 @endif
-                    ><strong>{{$item->diff}}</strong> Días</td>
+                    ><strong>{{$item->diff}}</strong> días</td>
                     <td scope="row" style="  border: 1px solid black;">{{$item->origen->codigo}} - {{$item->origen->descripcion}}</td>
                 </tr>
 

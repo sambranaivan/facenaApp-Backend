@@ -1,6 +1,6 @@
 
 
-<p>Reporte Semanal de Pases en espera para el Departamento <strong>{{$demo[0]->destino}}</strong></p>
+<p>Reporte Semanal de Pases en espera de ser ingresados al Departamento <strong>{{$demo[0]->destino}}</strong></p>
 
 <table class="table" style="border:1px solid black">
     <thead>
