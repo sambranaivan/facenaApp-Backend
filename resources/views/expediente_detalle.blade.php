@@ -50,7 +50,7 @@
                     <?php $item = $expediente->getPases->reverse()->first() ;?>
                     <p>en <strong>{{$item->destino}}</strong> desde el <strong>{{$item->fecha}}</strong></p>
                     <div class="text-center">
-                            <a name="" id="volver" class="btn btn-primary" href="#" role="button">Volver</a>
+                            <a name="" id="volver" class="btn btn-primary" href="#" role="button">Cerrar</a>
                         </div>
                     </div>
                 </div>

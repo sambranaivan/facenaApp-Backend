@@ -41,7 +41,7 @@
                 <h3>Expediente no Encontrado</h3>
             </div>
             <div class="card-body text-center">
-                <a name="" id="volver" class="btn btn-primary" href="#" role="button">Volver</a>
+                <a name="" id="volver" class="btn btn-primary" href="#" role="button">Cerrar</a>
             </div>
         </div>
     </div>
