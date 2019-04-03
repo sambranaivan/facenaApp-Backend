@@ -15,7 +15,7 @@ class NotificationController extends Controller
     {
         $data = json_decode($request->getContent());
         $user_id = $data->user_id;
-        $from = $data->from;
+
         $n = Notification::where('user_id',$user_id)->where('status',true)->get();
 
          return response()->json($n);
