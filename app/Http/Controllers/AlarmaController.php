@@ -489,18 +489,6 @@ public function borrarAlerta($departamento_id){
             echo "email enviado  a ".$escalar.'</br>';
             // echo $mensaje;
 
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
 
