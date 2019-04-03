@@ -21,9 +21,10 @@ class NotificationController extends Controller
          return response()->json($n);
     }
 
-    public function deleteNotification($n_id)
+    public function deleteNotification(Request $request)
     {
-        $n = Notification::find($n_id);
+        $data = json_decode($request->getContent());
+        $n = Notification::find($data->id);
         $n->status = false;
         $n->save();
         return true;
