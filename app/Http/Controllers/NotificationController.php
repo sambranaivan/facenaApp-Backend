@@ -25,8 +25,12 @@ class NotificationController extends Controller
     {
         $data = json_decode($request->getContent());
         $n = Notification::find($data->id);
+        if($n)
+        {
         $n->status = false;
         $n->save();
-        return true;
+        return "borrado";
+        }
+        return 'no existe';
     }
 }
