@@ -24,3 +24,4 @@ Route::post('/getUser', 'UserController@getUser');
 
 
 Route::post('/getNotifications', 'NotificationController@getNotifications');
+Route::post('/deleteNotication', 'NotificationController@deleteNotification');
