@@ -49,7 +49,7 @@ class MailController extends Controller
 
     public function send(){
 
-
+        ini_set('display_errors',1);
         $day_of_week = date('N');
         $hour = date('G');
          $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
