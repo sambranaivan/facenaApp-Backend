@@ -20,6 +20,7 @@ class MailController extends Controller
             $mail->day_of_week = $request->day_of_week;
             $mail->hour = $request->hour;
             $mail->save();
+               return redirect()->route('listadoMails');
 
 
     }
@@ -62,7 +63,7 @@ class MailController extends Controller
             foreach ($mails as $mail)
             {
 
-                mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras);
+                 mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras);
                 echo "Enviado";
             }
         }
@@ -72,4 +73,5 @@ class MailController extends Controller
 
 
     }
+
 }
