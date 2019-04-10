@@ -63,6 +63,7 @@ class MailController extends Controller
             foreach ($mails as $mail)
             {
                 echo "Enviando ".$mail->para."....";
+                mail("sambranaivan@gmail.com", "heartbeat", "<b>Hola Mundo</b>", $cabeceras);
                 $response = (mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras));
                  if($response)
                  {
