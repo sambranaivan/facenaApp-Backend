@@ -479,6 +479,7 @@ class ComposerStaticInitbc342ee1628c14380e7efb300b43add0
         'App\\alerta' => __DIR__ . '/../..' . '/app/alerta.php',
         'App\\configuracion' => __DIR__ . '/../..' . '/app/Configuracion.php',
         'App\\hash' => __DIR__ . '/../..' . '/app/hash.php',
+        'App\\mail' => __DIR__ . '/../..' . '/app/mail.php',
         'App\\notification' => __DIR__ . '/../..' . '/app/notification.php',
         'App\\registro' => __DIR__ . '/../..' . '/app/Registro.php',
         'App\\subcription' => __DIR__ . '/../..' . '/app/subcription.php',
