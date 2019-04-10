@@ -5,7 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Listado de Mails</div>
+                <div class="card-header">
+<div class="row">
+                    <div class="col-md-10">
+                        Listado de Mails
+                    </div>
+                    <div class="col-md-2">
+                    <a name="" id="" class="btn btn-primary" href="{{route('editorMail')}}" role="button">Nuevo</a>
+                    </div>
+                </div>
+
+                </div>
 
                 <div class="card-body">
 
@@ -22,13 +32,13 @@
                           <tbody>
                              @foreach ($mails as $item)
                                     <tr>
-                                        <th>{{$item->para}}</th>
-                                        <th>{{$item->asunto}}</th>
-                                        <th>{{$item->day_of_week}}</th>
-                                        <th>{{$item->hour}}</th>
-                                        <th>
+                                        <td>{{$item->para}}</td>
+                                        <td>{{$item->asunto}}</td>
+                                        <td>{{$item->day_of_week}}</td>
+                                        <td class="text-center">{{$item->hour}}:00 Hs</td>
+                                        <td>
                                         <a name="" id="" class="btn btn-primary" href="{{route('editarMail',['id'=>$item->id])}}" role="button">Editar</a>
-                                        </th>
+                                        </td>
                                     </tr>
                              @endforeach
                           </tbody>
