@@ -73,6 +73,7 @@ class MailController extends Controller
                  else
                  {
                      echo "Error</br>";
+                     echo error_get_last()['message'];
                  }
 
             }
