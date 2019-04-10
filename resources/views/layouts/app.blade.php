@@ -80,6 +80,9 @@
                                             <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
                                                 Seguimiento de Expedientes
                                             </a>
+                                             <a class="dropdown-item" href="{{ route('listadoMails') }}">
+                                                Envio de Mails
+                                            </a>
                                             {{-- <a class="dropdown-item" href="{{ route('etiquetas') }}">
                                                 Imprimir Códigos de Barra
                                             </a> --}}
