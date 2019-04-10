@@ -62,7 +62,7 @@ class MailController extends Controller
             echo "Enviando ".$mails->count()." Mails";
             foreach ($mails as $mail)
             {
-                echo "Enviando ".$$mail->para."....";
+                echo "Enviando ".$mail->para."....";
                  if((mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras)))
                  {
                     echo "Enviado</br>";
