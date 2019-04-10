@@ -52,7 +52,7 @@ class MailController extends Controller
 
         $day_of_week = date('N');
         $hour = date('G');
-         $cabeceras = 'From: eirrazabal@exa.unne.edu.ar' . "\r\n" .
+         $cabeceras = 'From: expedientes@exa.unne.edu.ar' . "\r\n" .
                 'Reply-To: webmaster@example.com' . "\r\n" .
                 'Content-Type: text/html; charset=UTF-8'. "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
