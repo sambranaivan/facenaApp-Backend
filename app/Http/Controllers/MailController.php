@@ -63,7 +63,7 @@ class MailController extends Controller
             foreach ($mails as $mail)
             {
 
-                 mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras);
+                 print_r(mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras));
                 echo "Enviado";
             }
         }
