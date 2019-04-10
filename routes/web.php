@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/mails/editor","MailController@index")->name('editorMail');
     //
     Route::post('/mails/save',"MailController@save")->name('guardarMail');
+
     Route::get('/mails/edit/{id}',"MailController@edit")->name('editarMail');
     Route::post('/mails/update',"MailController@update")->name('actualizarMail');
     Route::get('/mails/send',"MailController@send")->name('sendMail');

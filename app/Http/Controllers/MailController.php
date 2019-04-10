@@ -44,4 +44,31 @@ class MailController extends Controller
         $mails = mail::all();
         return view('mails.listado')->with('mails',$mails);
     }
+
+    public function send(){
+
+
+        $day_of_week = date('N');
+        $hour = date('G');
+         $cabeceras = 'From: eirrazabal@exa.unne.edu.ar' . "\r\n" .
+                'Reply-To: webmaster@example.com' . "\r\n" .
+                'Content-Type: text/html; charset=UTF-8'. "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+        $mails = mail::where('day_of_week',$day_of_week)->where('hour',$hour)->get();
+        if($mails->count())
+        {
+            echo "Enviando ".$mails->count()." Mails";
+            foreach ($mails as $mail)
+            {
+
+                // mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras);
+                echo "Enviado";
+            }
+        }
+        else {
+            echo 'No Hay Mails';
+        }
+
+
+    }
 }
