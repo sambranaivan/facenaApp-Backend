@@ -28,8 +28,8 @@
         @csrf
            <div class="form-group">
              <label for="asunto">Asunto</label>
-             <input type="text" class="form-control" name="asunto" id="" aria-describedby="helpId" placeholder="">
-             <small id="helpId" class="form-text text-muted">Help text</small>
+             <input type="text" class="form-control" name="asunto" id="" aria-describedby="helpId" placeholder="" required>
+             {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
            </div>
            <div class="form-group">
              <label for="asunto">Contenido</label>
@@ -43,8 +43,8 @@
 
                    <div class="form-group">
                      <label for="para">Enviar a:</label>
-                     <input type="email" class="form-control" name="para" id="" aria-describedby="emailHelpId" placeholder="">
-                     <small id="emailHelpId" class="form-text text-muted">Help text</small>
+                     <input type="text" class="form-control" name="para" id="" aria-describedby="emailHelpId" placeholder="" required>
+                     {{-- <small id="emailHelpId" class="form-text text-muted">Help text</small> --}}
                    </div>
                </div>
                <div class="col-md-2">
