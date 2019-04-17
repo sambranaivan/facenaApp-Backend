@@ -19,7 +19,7 @@ Auth::routes();
 
 // Route::get('/', 'HomeController@index')->name('home');
 
-
+Route::get('/mails/send',"MailController@send")->name('sendMail');
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/mails/editor","MailController@index")->name('editorMail');
     //
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mails/edit/{id}',"MailController@edit")->name('editarMail');
     Route::post('/mails/update',"MailController@update")->name('actualizarMail');
-    Route::get('/mails/send',"MailController@send")->name('sendMail');
+
     Route::get('/mails',"MailController@listado")->name('listadoMails');
 
 

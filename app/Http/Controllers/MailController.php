@@ -57,30 +57,32 @@ class MailController extends Controller
                 'Content-Type: text/html; charset=UTF-8'. "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
         $mails = mail::where('day_of_week',$day_of_week)->where('hour',$hour)->get();
-        if($mails->count())
-        {
-            echo "Enviando ".$mails->count()." Mails";
-            foreach ($mails as $mail)
-            {
-                echo "Enviando ".$mail->para."....";
-                mail("sambranaivan@gmail.com", "heartbeat", "<b>Hola Mundo</b>", $cabeceras);
-                $response = (mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras));
-                 if($response)
-                 {
-                     print_r($response);
-                    echo "Enviado</br>";
-                 }
-                 else
-                 {
-                     echo "Error</br>";
-                     print_r(error_get_last());
-                 }
+        // if($mails->count())
+        // {
+        //     echo "Enviando ".$mails->count()." Mails";
+        //     foreach ($mails as $mail)
+        //     {
+        //         echo "Enviando ".$mail->para."....";
+        //         mail("sambranaivan@gmail.com", "heartbeat", "<b>Hola Mundo</b>", $cabeceras);
+        //         $response = (mail($mail->para, $mail->asunto, $mail->mensaje, $cabeceras));
+        //          if($response)
+        //          {
+        //              print_r($response);
+        //             echo "Enviado</br>";
+        //          }
+        //          else
+        //          {
+        //              echo "Error</br>";
+        //              print_r(error_get_last());
+        //          }
 
-            }
-        }
-        else {
-            echo 'No Hay Mails';
-        }
+        //     }
+        // }
+        // else {
+        //     echo 'No Hay Mails';
+        // }
+
+        return response($mails);
 
 
     }
