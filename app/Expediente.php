@@ -1,9 +1,9 @@
 <?php
 
 namespace App;
+use Datetime;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Expediente extends Model
 {
     //
@@ -27,6 +27,32 @@ class Expediente extends Model
         $hash = strtoupper(base_convert($hash,10,36));
         return $hash;
     }
+
+    /**
+     * hace cuanto volvio de rectorado?
+     */
+
+     public function since($codigo_departamento){
+         $since = 0;
+         $_pase = "";
+         foreach ($this->getPases as $pase)
+         {
+            if($pase->codigo_destino == $codigo_departamento)
+            {
+                $_pase = $pase;
+                // $pase->fecha_salida - hoy
+                // $fecha = strtotime($pase->fecha_salida);
+                $fecha = new DateTime(($pase->fecha_salida));
+                $hoy = new DateTime();
+                $interval = date_diff($fecha, $hoy);
+                $since =  $interval->format("%a");
+                return [$since,$pase];
+            }
+         }
+         return [$since,$pase];
+
+
+     }
 
 
 

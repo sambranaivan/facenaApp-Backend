@@ -13,7 +13,7 @@ class PaseController extends Controller
     ////pases en rectorado pendientes de envio
     public function pasesEnRecotrado()
     {
-          $c = Configuracion::first();
+        $c = Configuracion::first();
 
         $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha) as diff
@@ -21,7 +21,7 @@ class PaseController extends Controller
                                                         where fecha_ingreso like "%0000-00-00%"
                                                         and fecha_salida like "%0000-00-00%"
                                                             and fecha like "%'.$c->filtrofecha.'%"
-                                                        and ultimo_destino = 983
+                                                        and codigo_destino = 983
                                                         order by registro desc
                                                         limit 0,100
                                                         ');
