@@ -27,6 +27,7 @@
                                   <th>Día</th>
                                   <th>Hora</th>
                                   <th>Editar</th>
+                                  <th>Borrar</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -38,6 +39,9 @@
                                         <td class="text-center">{{$item->hour}}:00 Hs</td>
                                         <td>
                                         <a name="" id="" class="btn btn-primary" href="{{route('editarMail',['id'=>$item->id])}}" role="button">Editar</a>
+                                        </td>
+                                        <td>
+                                        <a name="" id="" class="btn btn-danger" href="{{route('borrarMail',['id'=>$item->id])}}" role="button">Borrar</a>
                                         </td>
                                     </tr>
                              @endforeach

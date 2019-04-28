@@ -60,26 +60,26 @@
 
                                     @if(Auth::user()->superadmin)
                                             <a class="dropdown-item"href="{{ route('departamentos') }}">
-                                            Departamentos
+                                            Pases en Departamentos FaCENA
                                             </a>
                                             <a class="dropdown-item" href="{{ route('superadmin') }}">
                                             Configuración
                                             </a>
                                              <a class="dropdown-item" href="{{ route('alertas') }}">
-                                                Alertas
+                                                Notificación vía Mail a Departamentos
                                             </a>
                                             {{-- <a class="dropdown-item" href="{{ route('endepartamento',['departamento_id'=>983]) }}">
                                                 Pases en Rectorado
                                             </a> --}}
                                              <a class="dropdown-item" href="{{ route('rectorado') }}">
-                                                Rectorado
+                                                Pases a Rectorado
                                             </a>
                                              <a class="dropdown-item" href="{{ route('notificaciones') }}">
-                                                Notificaciones
+                                               Alertas Móviles por Asunto
                                             </a>
-                                            <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
+                                            {{-- <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
                                                 Seguimiento de Expedientes
-                                            </a>
+                                            </a> --}}
                                              <a class="dropdown-item" href="{{ route('listadoMails') }}">
                                                 Envio de Mails
                                             </a>

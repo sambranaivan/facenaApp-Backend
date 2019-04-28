@@ -7,23 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class seguimiento extends Model
 {
 
+     protected $connection = 'mysql';
     /**
      * Primer ejecucion
      * Relleno la tabla de seguimientos con los
      * expedientes que pasaron por rectorado
      */
-    public function populate()
-    {
-        /**
-         * Busco los expedientes que esten en rectorado
-         * y los guardo en la tabla de seguimientos
-         */
 
+
+    public function getExpediente(){
+        return $this->hasOne('App\expediente','numero','expediente');
     }
-    public function seguimiento()
-    {
-        /**
-         * escucho los cambios de la tabla pases
-         */
-    }
+
 }

@@ -20,16 +20,21 @@ Auth::routes();
 // Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/mails/send',"MailController@send")->name('sendMail');
+Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");
+
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/mails/editor","MailController@index")->name('editorMail');
     //
     Route::post('/mails/save',"MailController@save")->name('guardarMail');
 
     Route::get('/mails/edit/{id}',"MailController@edit")->name('editarMail');
+    Route::get('/mails/delete/{id}',"MailController@delete")->name('borrarMail');
     Route::post('/mails/update',"MailController@update")->name('actualizarMail');
 
     Route::get('/mails',"MailController@listado")->name('listadoMails');
-
+Route::get('/exp/seguir/{id}',"SeguimientoController@seguir")->name('seguirExpediente');
+Route::get('/exp/unfollow/{id}',"SeguimientoController@unfollow")->name('unFollow');
 
     Route::get('/asuntostodos','AsuntoController@verTodos')->name('notificaciones_todos');///;//Ver todos los Asuntos
     Route::get('/asuntos', 'AsuntoController@verAsuntos')->name('notificaciones');///Ver Asuntos Filtrados

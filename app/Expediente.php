@@ -2,7 +2,8 @@
 
 namespace App;
 use Datetime;
-
+use Auth;
+use App\seguimiento;
 use Illuminate\Database\Eloquent\Model;
 class Expediente extends Model
 {
@@ -31,6 +32,45 @@ class Expediente extends Model
     /**
      * hace cuanto volvio de rectorado?
      */
+
+     public function getEstado(){
+         $ultimo_pase = $this->getPases->last();
+         $destino = $ultimo_pase->codigo_destino; ///pregunto si es distion a rectorado ahi aviso que volvio
+            if($destino !== 983)
+            {
+                return "regreso";
+            }
+         $fecha_ingreso = $ultimo_pase->fecha_ingreso;
+         $fecha_salida = $ultimo_pase->fecha_salida;
+            if($fecha_ingreso == "0000-00-00" && $fecha_salida == "0000-00-00")
+                {return "no-recibido";}
+            else if($fecha_ingreso !== "0000-00-00" && $fecha_salida == "0000-00-00")
+                {return "recibido";}
+            else if($fecha_ingreso !== "0000-00-00" && $fecha_salida !== "0000-00-00")
+                {return "tratandose";}
+
+     }
+
+     public function seguimientos(){
+         return $this->hasMany("App\seguimiento",'expediente','numero');
+     }
+
+     public function seguido(){
+         $seguimientos = $this->seguimientos;
+         $ret = false;
+        foreach ($seguimientos as $key => $value)
+        {
+            if($value->user_id == Auth::user()->id)
+            {
+                $ret = true;
+            }
+        }
+
+        return $ret;
+
+
+     }
+
 
      public function since($codigo_departamento){
          $since = 0;

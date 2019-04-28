@@ -29,6 +29,12 @@ class MailController extends Controller
             return view('mails.actualizar')->with('mail',$mail);
 
     }
+     public function delete($id){
+            $mail = mail::find($id);
+            $mail->delete();
+            return redirect()->route('listadoMails');
+
+    }
 
     public function update(request $request){
             $mail = mail::find($request->id);
