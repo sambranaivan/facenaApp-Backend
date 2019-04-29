@@ -35,7 +35,8 @@
                                     <tr>
                                         <td>{{$item->para}}</td>
                                         <td>{{$item->asunto}}</td>
-                                        <td>{{$item->day_of_week}}</td>
+                                        <td>{{$item->letras}}</td>
+
                                         <td class="text-center">{{$item->hour}}:00 Hs</td>
                                         <td>
                                         <a name="" id="" class="btn btn-primary" href="{{route('editarMail',['id'=>$item->id])}}" role="button">Editar</a>

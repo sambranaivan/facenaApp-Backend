@@ -50,6 +50,11 @@ class MailController extends Controller
 
     public function listado(){
         $mails = mail::all();
+        $dias = array('','Lunes',"Martes","Miercoles","Jueves","Viernes","Sábado","Domingo");
+        foreach ($mails as $mail)
+        {
+            $mail->letras = $dias[$mail->day_of_week];
+        }
         return view('mails.listado')->with('mails',$mails);
     }
 
