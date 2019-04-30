@@ -16,7 +16,7 @@ class seguimiento extends Model
 
 
     public function getExpediente(){
-        return $this->hasOne('App\expediente','numero','expediente');
+        return $this->hasOne('App\Expediente','numero','expediente');
     }
 
 }
