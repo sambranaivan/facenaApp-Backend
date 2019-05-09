@@ -86,10 +86,15 @@ class DepartamentoController extends Controller
     public function rectorado(){
         $config = Configuracion::first();
         $rectorado_id = $config->rectorado_id;
+                //
+        $last_week = \date('Y-m-d',(strtotime ( '-7 day' , strtotime ( now()) ) ));;
+        // echo $hoy;
+        // $last_week = "2019-01-01";
+
         ///obtener pases que tengan algo que ver con rectorado
         $expedientes = DB::connection('mysql2')->select('SELECT e.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
         left JOIN EXP_PASE p on e.numero = p.numero
-        WHERE p.codigo_destino = 983  and p.fecha >= "2019-01-01" order by p.registro desc' );
+        WHERE p.codigo_destino = 983  and p.fecha >= "'.$last_week.'" order by p.registro desc' );
 
 //TODO API avisar si diff > N si last()->codigo_destino sigue siendo 983
         $expedientes = Expediente::hydrate($expedientes);
