@@ -139,7 +139,12 @@
                                     <tr>
                                     <td scope="row" style="width:8rem;">{{$item->numero}}</td>
                                     {{-- <td scope="row">{{$item->hash()}}</td> --}}
-                                    <td scope="row">{{$item->getAsunto->descripcion}}</td>
+                                    @if($item->getAsunto)
+
+                                    <td scope="row" colspan="1">{{$item->getAsunto->descripcion}}</td>
+                                    @else
+                                    <td></td>
+                                    @endif
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                     <td>{{$item->getPases->last()->destino}}</td>
                                     {{-- <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td> --}}
