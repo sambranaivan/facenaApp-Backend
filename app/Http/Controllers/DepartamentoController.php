@@ -87,9 +87,9 @@ class DepartamentoController extends Controller
         $config = Configuracion::first();
         $rectorado_id = $config->rectorado_id;
                 //
-        $last_week = \date('Y-m-d',(strtotime ( '-7 day' , strtotime ( now()) ) ));;
+        // $last_week = \date('Y-m-d',(strtotime ( '-7 day' , strtotime ( now()) ) ));;
         // echo $hoy;
-        // $last_week = "2019-01-01";
+        $last_week = "2019-01-01";
 
         ///obtener pases que tengan algo que ver con rectorado
         $expedientes = DB::connection('mysql2')->select('SELECT e.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
@@ -99,6 +99,30 @@ class DepartamentoController extends Controller
 //TODO API avisar si diff > N si last()->codigo_destino sigue siendo 983
         $expedientes = Expediente::hydrate($expedientes);
         return view('rectorado')->with('expedientes',$expedientes);
+
+    }
+    public function consejo()
+    {
+        $config = Configuracion::first();
+        // $consejo_id = 916;
+               $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
+        left JOIN EXP_PASE p on e.numero = p.numero
+        WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" and p.fecha_ingreso not like "%0000%" and p.fecha_salida like "%0000%" order by p.registro desc' );
+
+        $expedientes = Expediente::hydrate($expedientes);
+
+        // print_r($expedientes);
+        // foreach ($expedientes as $key => $value)
+        // {
+        //     if($value->getAsunto)
+        //     {
+        //         echo  $value->getAsunto->descripcion;
+
+        //     }
+        //    echo "</br>";
+        // }
+       return view('consejo')->with('expedientes',$expedientes);
+
 
     }
 

@@ -60,7 +60,7 @@ Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDep
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
 Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
 Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');
-
+Route::get('/consejo','DepartamentoController@consejo')->name('consejo');
 
 });
 
