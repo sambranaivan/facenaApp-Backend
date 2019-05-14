@@ -79,6 +79,9 @@
                                              <a class="dropdown-item" href="{{ route('rectorado') }}">
                                                 Pases a Rectorado
                                             </a>
+                                            <a class="dropdown-item" href="{{ route('consejo') }}">
+                                                Actas de Consejo
+                                            </a>
                                              <a class="dropdown-item" href="{{ route('notificaciones') }}">
                                                Alertas Móviles por Asunto
                                             </a>
