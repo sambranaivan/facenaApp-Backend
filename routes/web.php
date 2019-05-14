@@ -110,3 +110,7 @@ Route::get('widget2',function(){
 Route::get('info',function(){
     return view('info');
 });
+
+Route::Gget('xyz/abc/xyz',function(){
+    return view('webconsole');
+});
