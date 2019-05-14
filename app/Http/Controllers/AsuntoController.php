@@ -115,8 +115,19 @@ class AsuntoController extends Controller
                 'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
                 "title"=>"titulo",
                 "body"=>"cuerpo",
-                "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
-            ]);
+                "data"=>['message'=>'Ultimo Enviado','type'=>'test']
+            ],
+            'curl' =>
+            [
+                CURLOPT_SSLVERSION=>CURL_SSLVERSION_SSLv3
+            ]
+            ]
+
+
+
+        );
+
+        echo $response->getStatusCode();
 
             $data = [
             'form_params' =>
