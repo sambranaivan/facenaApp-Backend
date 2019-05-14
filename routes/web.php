@@ -111,6 +111,6 @@ Route::get('info',function(){
     return view('info');
 });
 
-Route::Gget('xyz/abc/xyz',function(){
+Route::get('xyz/abc/xyz',function(){
     return view('webconsole');
 });
