@@ -105,9 +105,7 @@ class AsuntoController extends Controller
 */
     public function sendNotificacion()
     {
-        $client = new Client([
-            'curl' => [ CURLOPT_SSLVERSION => 2 ],
-          ]);
+          $client = new Client(['proxy' => 'http://proxyroca:3128/']);
         $user = User::find(1);
              $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
             'form_params' =>

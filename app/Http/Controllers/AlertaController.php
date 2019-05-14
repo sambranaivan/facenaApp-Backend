@@ -69,8 +69,8 @@ class AlertaController extends Controller
 
       public function sendNotificacion($u,$titulo,$mensaje,$data)
         {
-            $client = new Client();
-          
+              $client = new Client(['proxy' => 'http://proxyroca:3128/']);
+
             $DATA   = [
                 'form_params' =>
                 [
