@@ -105,47 +105,47 @@ class AsuntoController extends Controller
 */
     public function sendNotificacion()
     {
-        $client = new Client([
-            'curl' => [ CURLOPT_SSLVERSION => 1 ],
-          ]);
-        $user = User::find(1);
-             $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
-            'form_params' =>
-            [
-                'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
-                "title"=>"titulo",
-                "body"=>"cuerpo",
-                "data"=>['message'=>'Ultimo Enviado','type'=>'test']
-            ],
-            'curl' =>
-            [
-                CURLOPT_SSLVERSION=>CURL_SSLVERSION_SSLv3
-            ]
-            ]
+        // $client = new Client([
+        //     'curl' => [ CURLOPT_SSLVERSION => 1 ],
+        //   ]);
+        // $user = User::find(1);
+        //      $response = $client->request('POST', 'https://exp.host/--/api/v2/push/send', [
+        //     'form_params' =>
+        //     [
+        //         'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
+        //         "title"=>"titulo",
+        //         "body"=>"cuerpo",
+        //         "data"=>['message'=>'Ultimo Enviado','type'=>'test']
+        //     ],
+        //     'curl' =>
+        //     [
+        //         CURLOPT_SSLVERSION=>CURL_SSLVERSION_SSLv3
+        //     ]
+        //     ]
 
 
 
-        );
+        // );
 
-        echo $response->getStatusCode();
+        // echo $response->getStatusCode();
 
-            $data = [
-            'form_params' =>
-            [
-                'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
-                "title"=>"titulo",
-                "body"=>"cuerpo",
-                "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
-            ];
-            // header('Content-Type: application/json');
-            // echo json_encode($data);
-            $notification = new Notification();
-            $notification->user_id = 1;
-            $notification->token = 'token test';
-            $notification->mensaje = json_encode($data);
-            // $notification->save();
+        //     $data = [
+        //     'form_params' =>
+        //     [
+        //         'to'=> "ExponentPushToken[zjYKarCIWgfBJMU6U3_gir]", //User->getToken();
+        //         "title"=>"titulo",
+        //         "body"=>"cuerpo",
+        //         "data"=>['message'=>'Ultimo Enviado','type'=>'test']]
+        //     ];
+        //     // header('Content-Type: application/json');
+        //     // echo json_encode($data);
+        //     $notification = new Notification();
+        //     $notification->user_id = 1;
+        //     $notification->token = 'token test';
+        //     $notification->mensaje = json_encode($data);
+        //     // $notification->save();
 
-	// echo "Enviado Ok";
+	echo "Enviado Ok";
     }
 
 
