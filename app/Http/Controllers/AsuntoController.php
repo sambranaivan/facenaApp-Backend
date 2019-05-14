@@ -130,7 +130,7 @@ class AsuntoController extends Controller
             $notification->user_id = 1;
             $notification->token = 'token test';
             $notification->mensaje = json_encode($data);
-            $notification->save();
+            // $notification->save();
 
 	// echo "Enviado Ok";
     }
