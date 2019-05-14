@@ -105,3 +105,8 @@ Route::get('widget',function(){
 Route::get('widget2',function(){
     return view("widget2");
 });
+
+
+Route::get('info',function(){
+    return view('info');
+});
