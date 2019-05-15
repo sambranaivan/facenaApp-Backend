@@ -63,7 +63,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    @if(Auth::user()->superadmin)
+                                    @if(Auth::user()->superadmin == 1)
                                             <a class="dropdown-item"href="{{ route('departamentos') }}">
                                             Pases en Departamentos FaCENA
                                             </a>
@@ -73,9 +73,7 @@
                                              <a class="dropdown-item" href="{{ route('alertas') }}">
                                                 Notificación vía Mail a Departamentos
                                             </a>
-                                            {{-- <a class="dropdown-item" href="{{ route('endepartamento',['departamento_id'=>983]) }}">
-                                                Pases en Rectorado
-                                            </a> --}}
+
                                              <a class="dropdown-item" href="{{ route('rectorado') }}">
                                                 Pases a Rectorado
                                             </a>
@@ -91,16 +89,20 @@
                                              <a class="dropdown-item" href="{{ route('listadoMails') }}">
                                                 Envio de Mails
                                             </a>
-                                            {{-- <a class="dropdown-item" href="{{ route('etiquetas') }}">
-                                                Imprimir Códigos de Barra
-                                            </a> --}}
-
-                                            {{-- <a class="dropdown-item"href="{{ route('pasesportomar') }}">
-                                            Pases Por Tomar
+                                    @elseif(Auth::user()->superadmin == 2)
+                                                   <a class="dropdown-item" href="{{ route('rectorado') }}">
+                                                Pases a Rectorado
                                             </a>
-                                            <a class="dropdown-item"href="{{ route('endepartamento') }}">
-                                            Pases Por Departamento
-                                            </a> --}}
+                                            <a class="dropdown-item" href="{{ route('consejo') }}">
+                                                Actas de Consejo
+                                            </a>
+                                              <a class="dropdown-item" href="{{ route('notificaciones') }}">
+                                               Alertas Móviles por Asunto
+                                            </a>
+                                             <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
+                                                Seguimiento de Expedientes
+                                            </a>
+
                                     @endif
                                              <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
