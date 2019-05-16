@@ -52,7 +52,10 @@ class SeguimientoController extends Controller
             {
                 $flag = true;
                 // Notificar
-                $mail = array('to' => $seguimiento->mail,'asunto'=>"Actualización Expediente ".$exp->numero,'body'=>"Expediente ".$exp->numero." regresó de Rectorado");
+                $mail = array('to' => $seguimiento->mail,'asunto'=>"Actualización Expediente ".$exp->numero,
+                'body'=>"Expediente ".$exp->numero." con título: ".$exp->detalle_asunto." regresó de Rectorado el día ".$exp->getPases->last()->fecha);
+                // Expediente 09-2019-121212 con título: "xxxxx" regresó de Rectorado el día 05/05/2019.
+
                 $seguimiento->notify = true;
                 $seguimiento->save();
                 $ret[] = $mail;

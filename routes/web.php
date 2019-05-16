@@ -38,7 +38,7 @@ Route::get('/exp/unfollow/{id}',"SeguimientoController@unfollow")->name('unFollo
 
     Route::get('/asuntostodos','AsuntoController@verTodos')->name('notificaciones_todos');///;//Ver todos los Asuntos
     Route::get('/asuntos', 'AsuntoController@verAsuntos')->name('notificaciones');///Ver Asuntos Filtrados
-    Route::get('/', 'AsuntoController@verAsuntos')->name('notificaciones');///Ver Asuntos Filtrados
+    Route::get('/', 'HomeController@index');///Ver Asuntos Filtrados
     Route::get('/subscribe','AsuntoController@subscribe')->name('subscribe');///API subscribirse a un asusnto para notificaciones
     Route::get('/unsubscribe','AsuntoController@unsubscribe')->name('unsubscribe');///API desubscribirse a un asusnto para notificaciones
 
