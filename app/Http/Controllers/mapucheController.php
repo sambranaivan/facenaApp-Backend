@@ -27,6 +27,7 @@ class mapucheController extends Controller
     }
 
     public function index(){
+        echo "curl";
             //The URL of the resource that is protected by Basic HTTP Authentication.
             $url = "https://10.20.15.80/mapuche/agentes/legajo/4028";
 
