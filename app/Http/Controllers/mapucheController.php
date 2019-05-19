@@ -23,6 +23,6 @@ class mapucheController extends Controller
         print_r($info);
         echo"</br>";
 
-        print_r($output);
+        // print_r($output);
     }
 }
