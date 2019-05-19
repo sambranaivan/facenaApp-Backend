@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/mails/send',"MailController@send")->name('sendMail');
 Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");
+Route::get('/mapuche',"mapucheController@index");
 
 
 Route::group(['middleware' => ['auth']], function () {
