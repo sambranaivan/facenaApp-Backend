@@ -67,14 +67,20 @@ class mapucheController extends Controller
     public function index(){
 
                     $client = new Client(['proxy' => 'http://proxyroca:3128/']);
-                    $res = $client->request('GET', "https://10.20.15.80:7070*/mapuche/agentes/legajo/4028", [
-                    'auth' => ['mapuche', '123456']
-                    ]);
+                    $credentials = base64_encode('exactas:Exa2019_');
+                    $res = $client->request('GET', "https://10.20.15.80:7070*/mapuche/agentes/legajo/4028",
+                                [
+                                        'headers' => [
+                                            'Authorization' => 'Basic ' . $credentials,
+                                        ],
+                                ]
+                        );
                     echo $res->getStatusCode();
                     // "200"
                     echo $res->getHeader('content-type')[0];
                     // 'application/json; charset=utf8'
                     echo $res->getBody();
                     // {"type":"User"...'
-    }
-}
+
+
+}}
