@@ -28,7 +28,7 @@ class mapucheController extends Controller
         // print_r($output);
     }
 
-    public function index(){
+    public function indexj(){
         echo "curl";
             //The URL of the resource that is protected by Basic HTTP Authentication.
             $url = "https://10.20.15.80/mapuche/agentes/legajo/4028";
@@ -48,6 +48,7 @@ class mapucheController extends Controller
             //Tell cURL to return the output as a string instead
             //of dumping it to the browser.
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); // Skip SSL Verification
 
             //Execute the cURL request.
@@ -61,5 +62,19 @@ class mapucheController extends Controller
 
             //Print out the response.
             echo $response;
+    }
+
+    public function index(){
+
+                    $client = new Client(['proxy' => 'http://proxyroca:3128/']);
+                    $res = $client->request('GET', '"https://10.20.15.80:7070*/mapuche/agentes/legajo/4028"', [
+                    'auth' => ['exactas', 'Exa2019_']
+                    ]);
+                    echo $res->getStatusCode();
+                    // "200"
+                    echo $res->getHeader('content-type')[0];
+                    // 'application/json; charset=utf8'
+                    echo $res->getBody();
+                    // {"type":"User"...'
     }
 }
