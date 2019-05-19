@@ -20,7 +20,7 @@ class mapucheController extends Controller
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        print_r($info);
+        print_r($output);
         echo"</br>";
 
         // print_r($output);
