@@ -68,7 +68,7 @@ class mapucheController extends Controller
 
                     $client = new Client(['proxy' => 'http://proxyroca:3128/']);
                     $res = $client->request('GET', "https://10.20.15.80:7070*/mapuche/agentes/legajo/4028", [
-                    'auth' => ['exactas', 'Exa2019_']
+                    'auth' => ['mapuche', '123456']
                     ]);
                     echo $res->getStatusCode();
                     // "200"
