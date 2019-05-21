@@ -24,7 +24,7 @@
     $(document).ready(function(){
 
        $("#buscar").click(function(){
-            window.open("http://intranet.exa.unne.edu.ar/alertafacena/public/expediente/"+$("#hash").val(),
+            window.open("http://alerta.exa.unne.edu.ar/alertafacena/public/expediente/"+$("#hash").val(),
         "Expediente",
         "toolbar=no,scrollbars=no,menubar=no,resizable=no,top=auto,location=no,left=auto,width=500,height=300");
        })
