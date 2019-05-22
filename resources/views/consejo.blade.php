@@ -103,7 +103,7 @@
                                     @elseif($item->getConsejo() == "tratandose")
                                     <td scope="row"  class="" style="width:6rem;">Tratándose</td>
                                     @else
-                                    <td scope="row"  class="" style="width:6rem;">$item->getConsejo()</td>
+                                    <td scope="row"  class="" style="width:6rem;">{{$item->getConsejo()}}</td>
                                     @endif
 
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
