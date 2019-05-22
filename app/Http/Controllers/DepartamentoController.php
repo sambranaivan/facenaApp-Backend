@@ -105,25 +105,17 @@ class DepartamentoController extends Controller
     {
         $config = Configuracion::first();
         // $consejo_id = 916;
-               $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
+        //        $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
+        // left JOIN EXP_PASE p on e.numero = p.numero
+        // WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" and p.fecha_ingreso not like "%0000%" and p.fecha_salida like "%0000%" order by p.registro desc' );
+        $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
         left JOIN EXP_PASE p on e.numero = p.numero
-        WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" and p.fecha_ingreso not like "%0000%" and p.fecha_salida like "%0000%" order by p.registro desc' );
+        WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" order by p.registro desc' );
 
         $expedientes = Expediente::hydrate($expedientes);
 
-        // print_r($expedientes);
-        // foreach ($expedientes as $key => $value)
-        // {
-        //     if($value->getAsunto)
-        //     {
-        //         echo  $value->getAsunto->descripcion;
 
-        //     }
-        //    echo "</br>";
-        // }
        return view('consejo')->with('expedientes',$expedientes);
-
-
     }
 
     public function movimientos($exp_numero)

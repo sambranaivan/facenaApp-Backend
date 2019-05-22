@@ -3,6 +3,14 @@
 @section('content')
 
     <script>
+
+        function filtrar(val){
+            console.log(val.value);
+                                var value = val.value.toLowerCase();
+                                $("#tabla_body tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+        }
     $(document).ready(function(){
             $("#descargar_1").click(function(){
                 $("#tabla_1").table2excel({
@@ -12,8 +20,20 @@
             });
             })
 
+            //
 
-    })
+
+
+
+
+            //
+
+});
+
+
+
+
+
 </script>
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -33,30 +53,33 @@
                 </div>
 
                 <div class="card-body">
-
+                    {{--  --}}
+                    <form class="form-inline">
+                        <div class="form-group">
+                      <label for="">Estado: </label>
+                      <select class="form-control" name="" id="buscador" onchange="filtrar(this)">
+                        <option value="">-Todos-</option>
+                        <option value="En Secretaría">En Secretaría</option>
+                        <option value="Por Ingresar">Por Ingresar</option>
+                      </select>
+                    </div>
+                    </form>
+                    {{--  --}}
                         <table class="table table-sm table-striped" id="tabla_1">
                             <thead>
                                 <tr>
-                                    {{-- <td>N° de Expediente</td>
-
-                                    <td>Detalle</td>
-
-                                    <td>... desde el:</td>
-
-                                    <td>Estado<td>
-                                    <td>Pasaron <td> --}}
                                         <th>N° de Expediente</th>
                                         <th>Asunto</th>
                                         <th>Detalle</th>
-                                        <th>.. Desde el</th>
                                         <th>Estado</th>
+                                        <th>.. Desde el</th>
                                         <th>Pasaron</th>
                                         <th class="excludeThisClass"></th>
                                         <th class="excludeThisClass"></th>
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tabla_body">
                                 @foreach ($expedientes as $item)
 
 
@@ -71,17 +94,17 @@
                                     @endif
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                     {{-- <td>{{$item->getPases->last()->destino}}</td> --}}
-                                    <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
                                     {{-- <td style="width:6rem;">{{$item->getPases->last()->fecha_ingreso}}</td>
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha_salida}}</td> --}}
-                                    @if($item->getEstado() == "no-recibido")
-                                        <td  scope="row" class="bg-danger" style="width:6rem;">No Recibido</td>
-                                    @elseif($item->getEstado() == "recibido")
-                                        <td  scope="row" class="bg-warning" style="width:6rem;">Recibido</td>
-                                    @elseif($item->getEstado() == "tratandose")
-                                        <td scope="row"  class="bg-success" style="width:6rem;">Tratándose</td>
+                                    @if($item->getConsejo() == "no-recibido")
+                                    <td  scope="row" class="" style="width:6rem;">Por Ingresar</td>
+                                    @elseif($item->getConsejo() == "recibido")
+                                    <td  scope="row" class="" style="width:6rem;">En Secretaría</td>
+                                    @elseif($item->getConsejo() == "tratandose")
+                                    <td scope="row"  class="" style="width:6rem;">Tratándose</td>
                                     @endif
 
+                                    <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
 
                                     <td scope="row" style="width:6rem;">{{$item->diff}} días</td>
                                     <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Ver Movimientos <span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
