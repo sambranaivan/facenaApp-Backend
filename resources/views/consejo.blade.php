@@ -81,7 +81,7 @@
                             </thead>
                             <tbody id="tabla_body">
                                 @foreach ($expedientes as $item)
-
+                                    @if($item->getPases->last()->codigo_destino == 916)
 
                                     <tr>
                                     <td scope="row" style="width:8rem;">{{$item->numero}}</td>
@@ -103,7 +103,7 @@
                                     @elseif($item->getConsejo() == "tratandose")
                                     <td scope="row"  class="" style="width:6rem;">Tratándose</td>
                                     @else
-                                    <td scope="row"  class="" style="width:6rem;"></td>
+                                    <td scope="row"  class="" style="width:6rem;">$item->getConsejo()</td>
                                     @endif
 
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
@@ -117,7 +117,7 @@
                                     @endif
                                     {{-- <td scope="row"><a class="btn btn-sm btn-primary btn-block" href="#">Seguimiento</a></td> --}}
                                     </tr>
-
+                                        @endif
                                 @endforeach
 
                             </tbody>
