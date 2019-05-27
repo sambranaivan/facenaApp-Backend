@@ -69,7 +69,7 @@ class mapucheController extends Controller
                     $client = new Client();
                     $client = new Client(['proxy' => 'http://proxyroca:3128/']);
                     $credentials = base64_encode('exactas:Exa2019_');
-                    $res = $client->request('GET', "https://10.20.15.80:7070*/mapuche/agentes/legajo/4028",
+                    $res = $client->request('GET', "https://10.20.15.80:7070/mapuche/agentes/legajo/4028",
                                 [
                                         'headers' => [
                                             'Authorization' => 'Basic ' . $credentials,
