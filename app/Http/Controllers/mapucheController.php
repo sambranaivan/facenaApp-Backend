@@ -66,22 +66,38 @@ class mapucheController extends Controller
 
     public function index(){
 
-                    $client = new Client();
-                    $client = new Client(['proxy' => 'http://proxyroca:3128/']);
-                    $credentials = base64_encode('exactas:Exa2019_');
-                    $res = $client->request('GET', "https://10.20.15.80:7070/mapuche/agentes/legajo/4028",
-                                [
-                                        'headers' => [
-                                            'Authorization' => 'Basic ' . $credentials,
-                                        ],
-                                ]
-                        );
-                    echo $res->getStatusCode();
-                    // "200"
-                    echo $res->getHeader('content-type')[0];
-                    // 'application/json; charset=utf8'
-                    echo $res->getBody();
-                    // {"type":"User"...'
+
+            //The URL of the resource that is protected by Basic HTTP Authentication.
+            $url = "https://10.20.15.80/mapuche/agentes/legajo/4028";
+
+
+
+            //Initiate cURL.
+            $ch = curl_init($url);
+
+            //Specify the username and password using the CURLOPT_USERPWD option.
+            curl_setopt($ch, CURLOPT_USERPWD,"exactas:Exa2019_");
+            curl_setopt($ch, CURLOPT_PORT, 7070);
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            //Tell cURL to return the output as a string instead
+            //of dumping it to the browser.
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); // Skip SSL Verification
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+
+            //Execute the cURL request.
+            $response = curl_exec($ch);
+
+            //Check for errors.
+            if(curl_errno($ch)){
+            //If an error occured, throw an Exception.
+            throw new Exception(curl_error($ch));
+            }
+
+            //Print out the response.
+            echo $response;
 
 
 }}
