@@ -68,13 +68,12 @@ class mapucheController extends Controller
 
 
             //The URL of the resource that is protected by Basic HTTP Authentication.
-            $url = "https://10.20.15.80/mapuche/agentes/legajo/4028";
+            $url = "https://10.20.15.80/mapuche/agentes/all";
 
 
 
             //Initiate cURL.
             $ch = curl_init($url);
-
             //Specify the username and password using the CURLOPT_USERPWD option.
             curl_setopt($ch, CURLOPT_USERPWD,"exactas:Exa2019_");
             curl_setopt($ch, CURLOPT_PORT, 7070);
