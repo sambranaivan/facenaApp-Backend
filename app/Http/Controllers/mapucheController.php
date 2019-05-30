@@ -65,18 +65,17 @@ class mapucheController extends Controller
     }
 
     public function index(){
-
-
-            //The URL of the resource that is protected by Basic HTTP Authentication.
-            $url = "https://10.20.15.80/mapuche/agentes/all";
+      //The URL of the resource that is protected by Basic HTTP Authentication.
+            $url = "https://10.20.15.80:7070/mapuche/agentes/all";
 
 
 
             //Initiate cURL.
             $ch = curl_init($url);
+
             //Specify the username and password using the CURLOPT_USERPWD option.
             curl_setopt($ch, CURLOPT_USERPWD,"exactas:Exa2019_");
-            curl_setopt($ch, CURLOPT_PORT, 7070);
+	//            curl_setopt($ch, CURLOPT_PORT, 7070);
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
             //Tell cURL to return the output as a string instead
             //of dumping it to the browser.
