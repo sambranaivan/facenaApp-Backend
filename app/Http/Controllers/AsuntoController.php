@@ -128,8 +128,19 @@ class AsuntoController extends Controller
 	echo "Enviado Ok";
     }
 
+    public function crearPermisos(){
+        $u = User::all();
+
+        foreach ($u as $user)
+        {
+            $user->crearPermiso();
+        }
+    }
+
 
     public function verAsuntos(){
+
+        $this->crearPermisos();
 
         $config = Configuracion::first();
         $asuntos = DB::connection('mysql2')->select('SELECT * from mesa_exactas.TABLAS
@@ -143,6 +154,8 @@ class AsuntoController extends Controller
         $clave = rand(1000,9999);
 
            $u = User::find(Auth::user()->id);
+
+
 
         if(!$u->clave)
             {

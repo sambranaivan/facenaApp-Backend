@@ -21,7 +21,12 @@ Auth::routes();
 
 Route::get('/mails/send',"MailController@send")->name('sendMail');
 Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");
-Route::get('/mapuche',"mapucheController@index");
+Route::get('/mapuche',"mapucheController@index")->name("mapuche");
+Route::get('/mapuche/getJson',"mapucheController@getJson")->name('getMapuche');
+Route::get('/usuarios',"UserController@index")->name('usuarios');
+Route::get('/usuarios/new',"UserController@new")->name('newUser');
+Route::post('/usuarios/create',"UserController@create")->name('createUser');
+Route::get('/usuarios/setPermision/{user_id}/{permision}/{status}',"UserController@setPermission")->name('setPermision');
 
 
 Route::group(['middleware' => ['auth']], function () {

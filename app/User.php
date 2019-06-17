@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\permiso;
 
 class User extends Authenticatable
 {
@@ -27,4 +28,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function permiso(){
+            return $this->hasOne('App\permiso');
+    }
+
+    public function crearPermiso()
+    {
+        if(is_null(($this->permiso)))
+        {
+            $p = new permiso();
+            $p->user_id = $this->id;
+            $p->save();
+        }
+    }
+
 }

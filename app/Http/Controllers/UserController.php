@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\permiso;
 use App\configuracion;
 class UserController extends Controller
 {
@@ -44,8 +45,39 @@ class UserController extends Controller
         return redirect('superadmin');
     }
 
-    public function userList(){
+    public function index(){
+        $u = User::all();
+        return view('users',['users'=>$u]);
+    }
 
+    public function setPermission($user_id,$permision,$status){
+        $p = permiso::where('user_id',$user_id)->first();
+
+        $p[$permision] = $status;
+        $p->save();
+
+        return redirect(route('usuarios'));
+
+    }
+
+    public function new(){
+
+        return view('new');
+    }
+
+    public function create(request $request)
+    {
+        $u = new user();
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = \bcrypt($request->password);
+        $u->save();
+
+        $p = new permiso();
+        $p->user_id = $u->id;
+        $p->save();
+
+        return redirect(route('usuarios'));
     }
 
 

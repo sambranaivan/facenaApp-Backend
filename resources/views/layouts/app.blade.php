@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
+    {{-- atado con alambre --}}
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -64,47 +66,58 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    @if(Auth::user()->superadmin == 1)
-                                            <a class="dropdown-item"href="{{ route('departamentos') }}">
-                                            Pases en Departamentos FaCENA
-                                            </a>
+
+                                            @if(Auth::user()->permiso->superadmin)
                                             <a class="dropdown-item" href="{{ route('superadmin') }}">
                                             Configuración
                                             </a>
-                                             <a class="dropdown-item" href="{{ route('alertas') }}">
-                                                Notificación vía Mail a Departamentos
-                                            </a>
+                                            @endif
+                                            @if(Auth::user()->permiso->usuarios)
+                                                <a class="dropdown-item"href="{{ route('usuarios') }}">
+                                                Usuarios y Permisos
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->departamentos)
+                                                <a class="dropdown-item"href="{{ route('departamentos') }}">
+                                                Pases en Departamentos FaCENA
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->alertas)
+                                                <a class="dropdown-item" href="{{ route('alertas') }}">
+                                                    Notificación vía Mail a Departamentos
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->rectorado)
+                                                <a class="dropdown-item" href="{{ route('rectorado') }}">
+                                                    Pases a Rectorado
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->consejo)
+                                                <a class="dropdown-item" href="{{ route('consejo') }}">
+                                                    Actas de Consejo
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->notificaciones)
+                                                <a class="dropdown-item" href="{{ route('notificaciones') }}">
+                                                Alertas Móviles por Asunto
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->buscar_expediente)
+                                                <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
+                                                    Seguimiento de Expedientes
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->listadoMails)
+                                                <a class="dropdown-item" href="{{ route('listadoMails') }}">
+                                                    Envio de Mails
+                                                </a>
+                                                @endif
+                                                @if(Auth::user()->permiso->mapuche)
+                                                <a class="dropdown-item"href="{{ route('mapuche') }}">
+                                                    Vencimientos de Cargos
+                                                </a>
+                                            @endif
 
-                                             <a class="dropdown-item" href="{{ route('rectorado') }}">
-                                                Pases a Rectorado
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('consejo') }}">
-                                                Actas de Consejo
-                                            </a>
-                                             <a class="dropdown-item" href="{{ route('notificaciones') }}">
-                                               Alertas Móviles por Asunto
-                                            </a>
-                                            {{-- <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
-                                                Seguimiento de Expedientes
-                                            </a> --}}
-                                             <a class="dropdown-item" href="{{ route('listadoMails') }}">
-                                                Envio de Mails
-                                            </a>
-                                    @elseif(Auth::user()->superadmin == 2)
-                                                   <a class="dropdown-item" href="{{ route('rectorado') }}">
-                                                Pases a Rectorado
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('consejo') }}">
-                                                Actas de Consejo
-                                            </a>
-                                              <a class="dropdown-item" href="{{ route('notificaciones') }}">
-                                               Alertas Móviles por Asunto
-                                            </a>
-                                             <a class="dropdown-item" href="{{ route('buscar_expediente') }}">
-                                                Seguimiento de Expedientes
-                                            </a>
-
-                                    @endif
                                              <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
