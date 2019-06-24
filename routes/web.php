@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/mails/send',"MailController@send")->name('sendMail');
 Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");
-Route::get('/mapuche',"mapucheController@index")->name("mapuche");
+
 Route::get('/mapuche/getJson',"mapucheController@getJson")->name('getMapuche');
 Route::get('/usuarios',"UserController@index")->name('usuarios');
 Route::get('/usuarios/new',"UserController@new")->name('newUser');
@@ -32,6 +32,7 @@ Route::get('/usuarios/setPermision/{user_id}/{permision}/{status}',"UserControll
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/mails/editor","MailController@index")->name('editorMail');
     //
+    Route::get('/mapuche',"mapucheController@index")->name("mapuche");
     Route::post('/mails/save',"MailController@save")->name('guardarMail');
 
     Route::get('/mails/edit/{id}',"MailController@edit")->name('editarMail');
