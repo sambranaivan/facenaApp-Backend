@@ -6,6 +6,8 @@ use App\Expediente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Hash;
+use Auth;
+use App\ignored;
 class ExpedienteController extends Controller
 {
     //
@@ -44,5 +46,27 @@ class ExpedienteController extends Controller
     public function buscarExpediente(request $request)
     {
         return redirect()->route('verExpediente', ['hash' => $request->hash]);
+    }
+
+
+      public function ignorar($numero)
+    {
+        $ingnored = new ignored();
+        $ingnored->user_id = Auth::user()->id;
+        $ingnored->numero = $numero;
+        $ingnored->save();
+        return response("ok");
+    }
+
+    public function restaurar($numero)
+    {
+        $ignored = ignored::where('numero',$numero)->where('user_id',Auth::user()->id)->get();
+        foreach ($ignored as $key => $value) {
+
+            echo $value->id;
+            $value->delete();
+
+        }
+        return response("ok");
     }
 }
