@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pase;
 use App\Configuracion;
+use App\ignored;
 use DB;
 class PaseController extends Controller
 {
@@ -13,6 +14,10 @@ class PaseController extends Controller
     ////pases en rectorado pendientes de envio
     public function pasesEnRecotrado()
     {
+
+        $ingored = ingored::where('user_id',Auth::user()->id)->get();
+
+
         $c = Configuracion::first();
 
         $results = DB::connection('mysql2')->select('SELECT *,

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Departamento;
 use App\Pase;
 use App\Configuracion;
+use App\ignored;
 use App\Expediente;
+use Auth;
 use DB;
 class DepartamentoController extends Controller
 {
@@ -85,6 +87,16 @@ class DepartamentoController extends Controller
 
     public function rectorado(){
         $config = Configuracion::first();
+        $ignored = ignored::where("user_id",Auth::user()->id)->get();
+        $ignored_list = "";
+        foreach ($ignored as $key => $value)
+        {
+            $ignored_list .="'$value->numero'".",";
+        }
+        $ignored_list .="'0'";
+        // obtengo string para la consulta
+
+
         $rectorado_id = $config->rectorado_id;
                 //
         // $last_week = \date('Y-m-d',(strtotime ( '-7 day' , strtotime ( now()) ) ));;
@@ -94,7 +106,7 @@ class DepartamentoController extends Controller
         ///obtener pases que tengan algo que ver con rectorado
         $expedientes = DB::connection('mysql2')->select('SELECT e.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
         left JOIN EXP_PASE p on e.numero = p.numero
-        WHERE p.codigo_destino = 983  and p.fecha >= "'.$last_week.'" order by p.registro desc' );
+        WHERE p.codigo_destino = 983  and p.fecha >= "'.$last_week.'" and e.numero not in('.$ignored_list.') order by p.registro desc' );
 
 //TODO API avisar si diff > N si last()->codigo_destino sigue siendo 983
         $expedientes = Expediente::hydrate($expedientes);
