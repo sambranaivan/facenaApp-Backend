@@ -52,6 +52,7 @@ return array(
     'App\\alerta' => $baseDir . '/app/alerta.php',
     'App\\configuracion' => $baseDir . '/app/Configuracion.php',
     'App\\hash' => $baseDir . '/app/hash.php',
+    'App\\ignored' => $baseDir . '/app/ignored.php',
     'App\\mail' => $baseDir . '/app/mail.php',
     'App\\notification' => $baseDir . '/app/notification.php',
     'App\\permiso' => $baseDir . '/app/permiso.php',

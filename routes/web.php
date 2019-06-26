@@ -40,8 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/mails/update',"MailController@update")->name('actualizarMail');
 
     Route::get('/mails',"MailController@listado")->name('listadoMails');
-Route::get('/exp/seguir/{id}',"SeguimientoController@seguir")->name('seguirExpediente');
-Route::get('/exp/unfollow/{id}',"SeguimientoController@unfollow")->name('unFollow');
+    Route::get('/exp/seguir/{id}',"SeguimientoController@seguir")->name('seguirExpediente');
+    Route::get('/exp/unfollow/{id}',"SeguimientoController@unfollow")->name('unFollow');
 
     Route::get('/asuntostodos','AsuntoController@verTodos')->name('notificaciones_todos');///;//Ver todos los Asuntos
     Route::get('/asuntos', 'AsuntoController@verAsuntos')->name('notificaciones');///Ver Asuntos Filtrados

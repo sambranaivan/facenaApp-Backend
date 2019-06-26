@@ -24,6 +24,17 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-rect" role="tab" aria-controls="nav-rect" aria-selected="true">Expedientes En Rectorado</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-return" role="tab" aria-controls="nav-return" aria-selected="false">Expedientes que regresaron de Rectorado</a>
+                    {{-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Expedientes que regresaron de Rectorado</a> --}}
+                </div>
+            </nav>
+
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-rect" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -108,6 +119,9 @@
                 </div>
             </div>
 
+                    </div>
+                <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-profile-tab">
+
              <div class="card">
                 <div class="card-header">
                  <div class="row">
@@ -167,6 +181,15 @@
 
                 </div>
             </div>
+
+                    </div>
+                {{-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    ...
+                    ocultos
+                </div> --}}
+            </div>
+
+
         </div>
     </div>
 </div>
