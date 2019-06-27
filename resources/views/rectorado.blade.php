@@ -141,7 +141,7 @@
                                     <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-secondary btn-block" href="{{ route('unFollow', ['exp' => $item->numero]) }}" role="button">Dejar de Seguir</a></td>
                                     @else
                                     <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('seguirExpediente', ['exp' => $item->numero]) }}" role="button">Seguir</a></td>
-                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block ocultar" data-numero="{{$item->numero}}" href="#" role="button">Omitir</a></td>
+                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm text-white btn-primary btn-block ocultar" data-numero="{{$item->numero}}"  role="button">Omitir</a></td>
                                     @endif
                                     {{-- <td scope="row"><a class="btn btn-sm btn-primary btn-block" href="#">Seguimiento</a></td> --}}
                                     </tr>
@@ -257,7 +257,7 @@
                                     {{-- <td style="width:6rem;">{{$item->diff}} días</td> --}}
                                     <td style="width:6rem;">{{$item->since(983)[0]}} días</td>
                                     <td scope="row" class="excludeThisClass"><a class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Ver Movimientos <span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
-                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block recuperar" data-numero="{{$item->numero}}" href="#" role="button">Volver a Mostrar</a></td>
+                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block text-white recuperar" data-numero="{{$item->numero}}"  role="button">Volver a Mostrar</a></td>
                                     {{-- <td scope="row"><a class="btn btn-sm btn-primary btn-block" href="#">Seguimiento</a></td> --}}
                                     </tr>
 
