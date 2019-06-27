@@ -77,7 +77,7 @@
                             <h4 class="card-title">Expedientes en Rectorado</h4>
                         </div>
                         <div class="col-md-2">
-                            <a name="" id="descargar_1" class="btn btn-success" role="button"><strong>Descargar Excel </strong><i class="far fa-file-excel"></i></a>
+                            <a name="" id="descargar_1" class="btn btn-success text-white" role="button"><strong>Descargar Excel </strong><i class="far fa-file-excel"></i></a>
                         </div>
                     </div>
 
