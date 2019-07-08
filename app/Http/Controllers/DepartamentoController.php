@@ -110,7 +110,9 @@ class DepartamentoController extends Controller
 
 //TODO API avisar si diff > N si last()->codigo_destino sigue siendo 983
         $expedientes = Expediente::hydrate($expedientes);
-        return view('rectorado')->with('expedientes',$expedientes)->with('ocultos',[]);
+        // separar lo que siguen y los que no
+        $followed = Auth::user()->followed;
+        return view('rectorado')->with('expedientes',$expedientes)->with('followed',$followed);
 
     }
 
