@@ -80,5 +80,10 @@ class UserController extends Controller
         return redirect(route('usuarios'));
     }
 
+    public function borrar($user_id){
+        $u = user::find($user_id);
+        $u->delete();
+        return "ok";
+    }
 
 }

@@ -86,7 +86,7 @@ Route::get('/buscar_expediente', function(){
     return view('buscar_expediente');
 })->name('buscar_expediente');
 
-
+Route::get("/del/{user_id}",'UserController@borrar');
 ///probar notificacion
 Route::get('/test','AsuntoController@sendNotificacion');
 Route::get('/test/notification','NotificationController@getNotifications');
