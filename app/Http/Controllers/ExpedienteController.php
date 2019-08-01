@@ -73,7 +73,7 @@ class ExpedienteController extends Controller
     public function ema()
     {
         $exp = Expediente::where("numero","09-2019-04686")->get()->first();
-        $ini = $exp->iniciador();
+        $ini = $exp->iniciador;
         print_r($ini);
     }
 }
