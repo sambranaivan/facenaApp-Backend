@@ -107,7 +107,7 @@ Route::get('semanal','AlarmaController@semanal');
 
 ////parte de registros
 Route::get('/registros','RegistroController@test');
-
+Route::get("/consulta",'ExpedienteController@ema');
 
 // Route::get('/etiquetas',function(){
 //     return view('barcode');
