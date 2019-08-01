@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expediente;
+use App\Iniciador;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Hash;
