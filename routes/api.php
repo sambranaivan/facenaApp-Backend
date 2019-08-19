@@ -25,3 +25,5 @@ Route::post('/getUser', 'UserController@getUser');
 
 Route::post('/getNotifications', 'NotificationController@getNotifications');
 Route::post('/deleteNotication', 'NotificationController@deleteNotification');
+
+Route::post('/expediente/{hash}','ExpedienteController@expedienteJson');
