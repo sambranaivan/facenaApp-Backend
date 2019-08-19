@@ -63,9 +63,9 @@ class SeguimientoController extends Controller
 
         }
 
-        if($flag)
-        {
+        // if($flag)
+        // {
             return response($ret);
-        }
+        // }
     }
 }

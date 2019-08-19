@@ -58,7 +58,7 @@ class MailController extends Controller
         return view('mails.listado')->with('mails',$mails);
     }
 
-    public function send(){
+    public function send(){///envio de mail autoatizados
 
         ini_set('display_errors',1);
         $day_of_week = date('N');

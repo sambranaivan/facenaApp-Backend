@@ -19,8 +19,8 @@ Auth::routes();
 
 // Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/mails/send',"MailController@send")->name('sendMail');
-Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");
+Route::get('/mails/send',"MailController@send")->name('sendMail');///evniar mail cada dia a cada hora
+Route::get('/checkChanges',"SeguimientoController@checkUpdate")->name("checkSeguimiento");///Seguimiento de expedientes FOLLOW regreso de rectorado
 
 Route::get('/mapuche/getJson',"mapucheController@getJson")->name('getMapuche');
 Route::get('/usuarios',"UserController@index")->name('usuarios');
@@ -99,10 +99,10 @@ Route::post('/buscar_expediente','ExpedienteController@buscarExpediente')->name(
 
 
 ////acciones CRON
-Route::get('/checkupdate','AlertaController@checkUpdate');
-Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');
+Route::get('/checkupdate','AlertaController@checkUpdate');///notificacion via app movil segun asunto
+Route::get('/runAlarma','AlarmaController@runAlarma')->name('runAlarma');//Alarmas semanales de vencimiento de pases en el departamente
+Route::get('semanal','AlarmaController@semanal');///Alarmas de pases en espera
 Route::get('testmail','AlarmaController@probarMail');
-Route::get('semanal','AlarmaController@semanal');
 
 
 ////parte de registros
@@ -125,10 +125,3 @@ Route::get('widget2',function(){
 });
 
 
-Route::get('info',function(){
-    return view('info');
-});
-
-Route::get('xyz/abc/xyz',function(){
-    return view('webconsole');
-});
