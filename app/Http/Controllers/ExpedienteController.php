@@ -43,15 +43,16 @@ class ExpedienteController extends Controller
 
     public function expedienteJson($hash){
         ///hash reverse
-        if (!$hash) {
-            return view('expediente_error')->with('error', true);
-        }
+        // if (!$hash) {
+        //     return view('expediente_error')->with('error', true);
+        // }
 
         $hash = strtoupper($hash);
 
         $hash = Hash::where('hash', $hash)->first();
         if (!$hash) {
-            return view('expediente_error')->with('error', true);
+            // return view('expediente_error')->with('error', true);
+            return response("expediente no encontrado",400);
         }
         $e = $hash->expediente;
 
