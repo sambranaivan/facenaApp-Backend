@@ -49,14 +49,21 @@ class ExpedienteController extends Controller
 
         $hash = strtoupper($hash);
 
-        $hash = Hash::where('hash', $hash)->first();
+        $hash = Hash::with('expediente')->where('hash', $hash)->first();
         if (!$hash) {
             // return view('expediente_error')->with('error', true);
             return response("expediente no encontrado",400);
         }
-        $e = $hash->expediente;
+        $expediente = $hash->expediente;
+        $numero = $expediente->numero;
+        $asunto = $expediente->detalle_asunto;
+        $item = $expediente->getPases->reverse()->first();
+        $destino = $item->destino;
+        $fecha = $item->fecha;
 
-        return response($e);
+        $response = ['expediente' =>$numero ,"asunto"=>$asunto,"destino"=>$destino,"fecha"=>$fecha];
+
+        return response()->json($response);
         // print_r($e);
     }
 
