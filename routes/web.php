@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/pases/{departamento_id}','DepartamentoController@pasePorTomar')->name('pasesportomar');
 Route::get('/endepartamento/{departamento_id}','DepartamentoController@paseEnDepartamento')->name('endepartamento');
+Route::post('/endepartamento', 'DepartamentoController@paseEnDepartamentoFilter')->name('endepartamentoFilter');
 Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('departamentos');
 Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
 Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');

@@ -55,8 +55,7 @@ class DepartamentoController extends Controller
      */
 
      public function paseEnDepartamento($departamento_id){
-           $c = Configuracion::first();
-
+        $c = Configuracion::first();
         $departamento = Departamento::find($departamento_id);
         $results = DB::connection('mysql2')->select('SELECT *,
                                                     DATEDIFF(NOW(),fecha_ingreso) as diff
@@ -65,16 +64,42 @@ class DepartamentoController extends Controller
                                                         and fecha_salida like "%0000-00-00%"
                                                             and fecha like "%'.$c->filtrofecha.'%"
                                                         and codigo_destino ='.$departamento_id.'
-
                                                         order by registro desc
-                                                        limit 0,100
                                                         ');
-
+        $pases = Pase::hydrate($results);
+        return view('paseEnDepartamento',(['pases'=>$pases,'departamento'=>$departamento]));
+    }
+    public function paseEnDepartamentoFilter(request $request)
+    {
+        $c = Configuracion::first();
+        $departamento = Departamento::find($request->departamento_id);
+        // print_r($request->desde);
+        $results = DB::connection('mysql2')->select('SELECT *,
+                                                    DATEDIFF(NOW(),fecha_ingreso) as diff
+                                                    FROM `EXP_PASE`
+                                                        where fecha_ingreso not like "%0000-00-00%"
+                                                        and fecha_ingreso <= "'.$request->hasta.'"
+                                                        and fecha_ingreso >= "'.$request->desde.'"
+                                                        and fecha_salida like "%0000-00-00%"
+                                                        and fecha like "%' . $c->filtrofecha . '%"
+                                                        and codigo_destino =' . $departamento->codigo . '
+                                                        order by registro desc
+                                                        ');
+        // print_r('SELECT *,
+        //                                             DATEDIFF(NOW(),fecha_ingreso) as diff
+        //                                             FROM `EXP_PASE`
+        //                                                 where fecha_ingreso not like "%0000-00-00%"
+        //                                                 and fecha_ingreso <= "' . $request->hasta . '"
+        //                                                 and fecha_ingreso >= "' . $request->desde . '"
+        //                                                 and fecha_salida like "%0000-00-00%"
+        //                                                 and fecha like "%' . $c->filtrofecha . '%"
+        //                                                 and codigo_destino =' . $departamento->codigo . '
+        //                                                 order by registro desc
+        //                                                 ');
 
         $pases = Pase::hydrate($results);
-
-
-        return view('paseEnDepartamento',(['pases'=>$pases,'departamento'=>$departamento]));
+        // print_r($pases);
+        return view('paseEnDepartamento', (['pases' => $pases, 'departamento' => $departamento, 'desde'=>$request->desde, 'hasta'=>$request->hasta]));
     }
 
 
