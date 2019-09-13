@@ -85,8 +85,11 @@ $("#descargar_excel").click(function(){
                         <td>{{$pase->numero}}</td>
                         <td>{{$pase->fecha_ingreso}}</td>
                         <td>
-                            @isset($pase->getExpediente->getAsunto->descripcion)
+                            {{-- @isset($pase->getExpediente->getAsunto->descripcion)
                                 {{$pase->getExpediente->getAsunto->descripcion}}
+                            @endisset --}}
+                             @isset($pase->getExpediente->detalle_asunto)
+                                {{$pase->getExpediente->detalle_asunto}}
                             @endisset
                         </td>
                         <td>{{$pase->diff}} Días</td>
