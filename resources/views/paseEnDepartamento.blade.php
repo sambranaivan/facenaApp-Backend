@@ -71,8 +71,6 @@ $("#descargar_excel").click(function(){
                     <button class="btn btn-primary btn-sm" id="descargar_excel"><i class="fa fa-file-excel" aria-hidden="true"></i>&nbsp;Descargar Excel</button>
                 </div>
                 </div>
-
-
                     <table class="table" id="tabla">
                         <thead>
                             <th>Exp. Numero</th>
