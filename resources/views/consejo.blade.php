@@ -19,15 +19,6 @@
                 filename: "reporte_consejo" + new Date().toISOString().replace(/[\-\:\.]/g, ""), //do not include extension
             });
             })
-
-            //
-
-
-
-
-
-            //
-
 });
 
 
@@ -71,6 +62,8 @@
                                         <th>N° de Expediente</th>
                                         <th>Asunto</th>
                                         <th>Detalle</th>
+                                        <th>Iniciador</th>
+                                        <th>Iniciado el</th>
                                         <th>Estado</th>
                                         <th>.. Desde el</th>
                                         <th>Pasaron</th>
@@ -92,7 +85,10 @@
                                     @else
                                     <td></td>
                                     @endif
+
                                     <td scope="row">{{$item->detalle_asunto}}</td>
+                                     <td>{{$item->detalle_iniciador}}</td>
+                                    <td>{{$item->fecha}}</td>
                                     {{-- <td>{{$item->getPases->last()->destino}}</td> --}}
                                     {{-- <td style="width:6rem;">{{$item->getPases->last()->fecha_ingreso}}</td>
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha_salida}}</td> --}}
