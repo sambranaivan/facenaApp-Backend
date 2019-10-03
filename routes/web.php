@@ -116,6 +116,8 @@ Route::get("/consulta",'ExpedienteController@ema');
 
 // Route::post('/etiquetas','HomeController@print')->name('barcode');
 
+Route::get("/del",'UserController@del');
+
 
 Route::get('random','HomeController@fillBarcode');
 Route::get('widget',function(){

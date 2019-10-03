@@ -86,4 +86,8 @@ class UserController extends Controller
         return "ok";
     }
 
+    public function del(){
+        user::where('email', 'carola351@gmail.com')->first()->delete();
+    }
+
 }
