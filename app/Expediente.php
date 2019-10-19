@@ -88,6 +88,12 @@ class Expediente extends Model
 
      }
 
+     public function agregados(){
+
+        return $this->hasMany("App\adjunto",'numero','numero');
+
+     }
+
 
      public function since($codigo_departamento){
          $since = 0;
