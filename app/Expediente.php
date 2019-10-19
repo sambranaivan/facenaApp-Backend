@@ -90,7 +90,7 @@ class Expediente extends Model
 
      public function agregados(){
 
-        return $this->hasMany("App\adjunto",'numero','numero');
+        return $this->hasMany("App\agregado",'numero','numero');
 
      }
 

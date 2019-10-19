@@ -60,12 +60,12 @@
                             <thead>
                                 <tr>
                                         <th>N° de Expediente</th>
-                                        <th>Asunto</th>
+                                        <th>Expedientes Agregados</th>
                                         <th>Detalle</th>
                                         <th>Iniciador</th>
                                         <th>Iniciado el</th>
                                         <th>Estado</th>
-                                        <th>.. Desde el</th>
+                                        <th>Desde el</th>
                                         <th>Pasaron</th>
                                         <th class="excludeThisClass"></th>
                                         <th class="excludeThisClass"></th>
@@ -79,13 +79,22 @@
                                     <tr>
                                     <td scope="row" style="width:8rem;">{{$item->numero}}</td>
                                     {{-- <td scope="row">{{$item->hash()}}</td> --}}
-                                    @if($item->getAsunto)
+                                    {{-- @if($item->getAsunto)
 
                                     <td scope="row" colspan="1">{{$item->getAsunto->descripcion}}</td>
                                     @else
                                     <td></td>
-                                    @endif
-
+                                    @endif --}}
+                                    <td scope="row" class="text-center">
+                                        @if ($item->agregados->count())
+                                        @foreach ($item->agregados as $a)
+                                            {{$a->numero_agregado}}
+                                        @endforeach
+                                            @else
+                                            --
+                                        @endif
+                                        
+                                    </td>
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                      <td>{{$item->detalle_iniciador}}</td>
                                     <td>{{$item->fecha}}</td>
@@ -105,7 +114,7 @@
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
 
                                     <td scope="row" style="width:6rem;">{{$item->diff}} días</td>
-                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Ver Movimientos <span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
+                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Pases<span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
                                     @if($item->seguido())
                                     {{-- <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-secondary btn-block" href="{{ route('unFollow', ['exp' => $item->numero]) }}" role="button">Dejar de Seguir</a></td> --}}
                                     @else
