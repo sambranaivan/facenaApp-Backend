@@ -8,6 +8,6 @@ class agregado extends Model
 {
     //
     protected $connection = 'mysql2';
-    protected $table = 'exp_agre';
+    protected $table = 'EXP_AGRE';
     protected $primaryKey  = 'numero';
 }
