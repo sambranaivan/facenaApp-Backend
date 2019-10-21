@@ -194,6 +194,22 @@ class DepartamentoController extends Controller
 
        return view('consejo')->with('expedientes',$expedientes);
     }
+ public function consejo_test()
+    {
+        $config = Configuracion::first();
+        // $consejo_id = 916;
+        //        $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
+        // left JOIN EXP_PASE p on e.numero = p.numero
+        // WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" and p.fecha_ingreso not like "%0000%" and p.fecha_salida like "%0000%" order by p.registro desc' );
+        $expedientes = DB::connection('mysql2')->select('SELECT e.* ,p.*, DATEDIFF(NOW(),p.fecha) as diff FROM EXPEDIEN e
+        left JOIN EXP_PASE p on e.numero = p.numero
+        WHERE p.codigo_destino = 916  and p.fecha >= "2019-01-01" order by p.registro desc' );
+
+        $expedientes = Expediente::hydrate($expedientes);
+
+
+       return view('consejo_test')->with('expedientes',$expedientes);
+    }
 
     public function movimientos($exp_numero)
     {

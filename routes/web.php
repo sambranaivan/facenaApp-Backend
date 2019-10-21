@@ -80,6 +80,7 @@ Route::get('/departamentos','DepartamentoController@verDepartamentos')->name('de
 Route::get('/rectorado','DepartamentoController@rectorado')->name('rectorado');
 Route::get('/movimientos/{exp}','DepartamentoController@movimientos')->name('movimientos');
 Route::get('/consejo','DepartamentoController@consejo')->name('consejo');
+Route::get('test/consejo','DepartamentoController@consejo_test')->name('consejo_test');
 
 });
 
