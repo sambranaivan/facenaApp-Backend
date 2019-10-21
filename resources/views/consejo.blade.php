@@ -88,7 +88,7 @@
                                     <td scope="row" class="text-center">
                                         @if ($item->agregados->count() > 0)
                                         @foreach ($item->agregados as $a)
-                                            {{$a->numero_agregado}}</br>
+                                               <p> {{$a->numero_agregado}}</p>
                                         @endforeach
                                             @else
 
