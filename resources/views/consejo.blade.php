@@ -114,7 +114,7 @@
                                     <td style="width:6rem;">{{$item->getPases->last()->fecha}}</td>
 
                                     <td scope="row" style="width:6rem;">{{$item->diff}} días</td>
-                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Pases<span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
+                                    <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-primary btn-block" href="{{ route('movimientos', ['exp' => $item->numero]) }}" role="button">Pases&nbsp;<span class="badge badge-light">{{$item->getPases->count()}}</span> </a></td>
                                     @if($item->seguido())
                                     {{-- <td scope="row" class="excludeThisClass"><a name="" id="" class="btn btn-sm btn-secondary btn-block" href="{{ route('unFollow', ['exp' => $item->numero]) }}" role="button">Dejar de Seguir</a></td> --}}
                                     @else
