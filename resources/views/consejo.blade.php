@@ -87,9 +87,9 @@
                                     @endif --}}
                                     <td scope="row" class="text-center">
                                         {{-- @if ($item->agregados->count()) --}}
-                                        @foreach ($item->agregados as $a)
+                                        {{-- @foreach ($item->agregados as $a)
                                             {{$a->numero_agregado}}
-                                        @endforeach
+                                        @endforeach --}}
                                             {{-- @else
                                             -- --}}
                                         {{-- @endif --}}
