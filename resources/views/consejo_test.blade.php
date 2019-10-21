@@ -91,7 +91,6 @@
                                             {{$a->numero_agregado}}
                                         @endforeach
                                             @else
-
                                             --
                                         @endif
 
