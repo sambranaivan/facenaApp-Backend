@@ -87,16 +87,15 @@
                                     @endif --}}
                                     <td scope="row" class="text-center">
                                         @if ($item->agregados->count() > 0)
-                                        {{$item->agregados->count()}}
-                                        {{-- @foreach ($item->agregados as $a)
-                                            {{$a->numero_agregado}}
-                                        @endforeach --}}
+                                        @foreach ($item->agregados as $a)
+                                               <p> {{$a->numero_agregado}}</p>
+                                        @endforeach
                                             @else
 
                                             --
                                         @endif
 
-                                        
+
                                     </td>
                                     <td scope="row">{{$item->detalle_asunto}}</td>
                                      <td>{{$item->detalle_iniciador}}</td>
