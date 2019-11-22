@@ -111,11 +111,11 @@ Route::get('testmail','AlarmaController@probarMail');
 Route::get('/registros','RegistroController@test');
 Route::get("/consulta",'ExpedienteController@ema');
 
-// Route::get('/etiquetas',function(){
-//     return view('barcode');
-// })->name('etiquetas');
+Route::get('/etiquetas',function(){
+    return view('barcode');
+})->name('etiquetas');
 
-// Route::post('/etiquetas','HomeController@print')->name('barcode');
+Route::post('/etiquetas','HomeController@print')->name('barcode');
 
 Route::get("/del",'UserController@del');
 
