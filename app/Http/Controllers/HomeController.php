@@ -156,7 +156,7 @@ public function print(request $request)
 
         }</style>';
 
-        $number = $request->numero;
+        $_number = $request->numero;
        for($j = 0; $j < $request->paginas; $j++)
        {
         echo '<page size="A4">';
@@ -166,7 +166,7 @@ public function print(request $request)
                 {
 
                     $numero = '09-2019-';
-                    $number = $number + $i;
+                    $number = $_number + $i;
                     if($number < 10)
                     {
                         $numero .='0000'.$number;
