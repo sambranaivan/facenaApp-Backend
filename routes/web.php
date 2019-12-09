@@ -128,4 +128,13 @@ Route::get('widget2',function(){
     return view("widget2");
 });
 
+//*sueldo*/
+Route::get('sueldos','sueldoController@home');
+
+Route::post('sueldos','sueldoController@calcula');
+
+
+
+
+
 
