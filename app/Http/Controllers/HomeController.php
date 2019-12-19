@@ -38,10 +38,10 @@ class HomeController extends Controller
  */
     $number = 0;
     $stack = [];
-    for($j=0;$j<100000;$j++)
+    for($j=0;$j<10000;$j++)
     {
 
-         $numero = '09-2019-';
+         $numero = '09-2020-';
          $number =  $j;
                     if($number < 10)
                         {$numero .='0000'.$number;}

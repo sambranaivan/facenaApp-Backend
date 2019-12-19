@@ -12,7 +12,7 @@
                     <form class="form-inline" method="POST" action={{route('barcode')}}>
                         @csrf
                         <div class="form-group">
-                            <label for="">Desde 09-2019-</label>
+                            <label for="">Desde 09-2020-</label>
                             <input type="number" name="numero" id="" step="1" max="99999" class="form-control" placeholder="00001" aria-describedby="helpId">
                         </div>
                         <div class="form-group">
@@ -21,7 +21,6 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Generar</button>
                     </form>
-
                 </div>
             </div>
         </div>
