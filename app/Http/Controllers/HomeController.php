@@ -111,40 +111,22 @@ public function print(request $request)
         width: 21.6cm;
         height: 27.9cm;
         }
-        page[size="A4"][layout="landscape"] {
-        width: 27.9cm;
-        height:  21.6cm;
-        }
-        page[size="A3"] {
-        width: 29.7cm;
-        height: 42cm;
-        }
-        page[size="A3"][layout="landscape"] {
-        width: 42cm;
-        height: 29.7cm;
-        }
-        page[size="A5"] {
-        width: 14.8cm;
-        height: 21cm;
-        }
-        page[size="A5"][layout="landscape"] {
-        width: 21cm;
-        height: 14.8cm;
-        }
+
+
 
         .etiqueta{
             width: 5.4cm;
-            height: 2.54cm;
+            height: 2.5cm;
             float:left;
             display:block;
-            border:1px dotted black;
+            // border:1px dotted black;
             text-align:center;
-            box-sizing:border-box;
+            // box-sizing:border-box;
         }
 
         .etiqueta .contains{
             width:100%;
-            margin-top:5%;
+            // margin-top:5%;
             height:90%;
         }
         @media print {
